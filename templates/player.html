@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLG</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/player.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="nav-logo">
+                <img src="/static/images/bn_pleague-360x360-1.png">
+            </div>
+            <ul class="nav-item">
+                <li class="text">近期賽事</li><p style="color: white;">|</p>
+                <li class="text">球員數據</li><p style="color: white;">|</p>
+                <li class="text">球隊數據</li><p style="color: white;">|</p>
+            </ul>
+            <div class="sign">
+                <div class="signature"><img src="/static/images/logo.png"></div>
+                <div class="signout text"><p>Hi,LEEGA</p></div>
+            </div>
+        </div>
+    </nav>
+    
+    <header class="head1"><p>STATISTIC</p></header>
+    
+    <section>
+        <div class="playerbody">
+            <div class="selection">
+                <div class="select">
+                    <p class="p1 text4">球隊</p>
+                    <p class="text4" style="margin-left: 10px;font-size: 20px;margin-top: 15px;font-weight: 300;">|</p>
+                    <select id="open" class="p2 text4" style="margin-top: 0px;">
+                        <option value="全部隊伍">全部隊伍</option>
+                        <option value="臺北富邦勇士">臺北富邦勇士</option>
+                        <option value="新北國王">新北國王</option>
+                        <option value="新竹街口攻城獅">新竹街口攻城獅</option>
+                        <option value="福爾摩沙台新夢想家">福爾摩沙台新夢想家</option>
+                        <option value="桃園領航猿">桃園領航猿</option>
+                        <option value="高雄17直播鋼鐵人">高雄17直播鋼鐵人</option>
+                        
+                    </select>
+                   
+                </div>
+                <div class="select">
+                    <p class="p1 text4">球員</p>
+                    <p class="text4" style="margin-left: 10px; font-size: 20px; margin-top: 15px; font-weight: 300;">|</p>
+                    <select id="open2" class="p2 text4" style="margin-top: 0px;">
+                        
+                       
+                    </select>
+                </div>
+                <div class="select">
+                    <input type="text" style="padding-left: 20px;" id="searchBox" placeholder="輸入球員姓名">
+                    <p class="text4" style="margin-left: 10px; font-size: 20px; margin-top: 15px; font-weight: 300;">|</p>
+                    <button id="searchBtn" type="submit" style="cursor: pointer;"><p>搜尋</p></button>
+
+                </div>
+                
+            </div>
+            <div class="player_container" >
+                <div class="p_title" >
+                    <div class="p_t ">
+                        <p class="p_t1">球員數據</p>
+                    </div>
+                    <div class="p_t" >
+                        <p class="p_t1" >我的最愛</p>
+                    </div>
+                </div>
+
+                <div class="p_list">
+                    <tr></tr>
+                </div>
+            </div>
+            
+            <div class="bar">
+                <img src="/static/images/bar2.png">
+                <p style="color: #000000;font-size: 30px;font-weight: 500;text-align: start;padding-left: 30px;">REGULAR-SEASON 22-23</p>
+            </div>
+
+            <table class="mytable" style="padding-top: 40px;">
+                <thead >
+                    <tr  style="align-items: flex-end;height: 50px;border: none;">
+                        <th style="color: #000000;font-size: 40px;text-align: start;padding-left: 30px;font-family: impact;"> PLAYERS STATS</th>
+                        
+                    </tr>
+                    <tr  style="align-items: flex-end; height: 30px;padding-bottom: 30px;">
+                        <th style="color: #778595;font-size: 20px;font-weight: 400;text-align: start;padding-left: 30px;"><img style="width: 20px;height: 20px;" src="/static/images/star.png"> 點擊星號將喜愛球員加入追蹤</th>
+                        
+                    </tr>
+                </thead>
+                <thead class="p_list">
+                    <tr class="list_tltle">
+                        <th>追蹤</th>
+                        <th>背號</th>
+                        <th>球員</th>
+                        <th>球隊</th>
+                        <th>上場次數</th>
+                        <th>上場時間</th>
+                        <th>兩分命中率</th>
+                        <th>三分命中率</th>
+                        <th>罰球命中率</th>
+                        <th>得分</th>
+                        <th>籃板</th>
+                        <th>助攻</th>
+                        <th>抄截</th>
+                        <th>失誤</th>
+                        <th>犯規</th>
+                    </tr>
+                </thead>
+
+                <tbody id="mytbody">
+                    <tr class="list_tltle2">
+                        <th><img class="myimg" src="/static/images/star (1).png"></th>
+                        <th>7</th>
+                        <th>林書豪</th>
+                        <th>富邦勇士</th>
+                        <th>10:20</th>
+                        <th>10:20</th>
+                        <th>42%</th>
+                        <th>42</th>
+                        <th>42</th>
+                        <th>80.67%</th>
+                        <th>12.3</th>
+                        <th>12</th>
+                        <th>12</th>
+                        <th>12</th>
+                        <th>12</th>
+                    </tr>
+                    <tr class="list_tltle2">
+                        <th><img class="myimg" src="/static/images/star (1).png"></th>
+                        <th >7</th>
+                        <th >林書豪</th>
+                        <th class="teamcolor">富邦勇士</th>
+                        <th>10:20</th>
+                        <th>10:20</th>
+                        <th>42%</th>
+                        <th>42</th>
+                        <th>42</th>
+                        <th>80.67%</th>
+                        <th>12.3</th>
+                        <th>12</th>
+                        <th>12</th>
+                        <th>12</th>
+                        <th>12</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+   
+
+    
+        <script src="/static/js/player.js"></script>
+</body>
+</html>

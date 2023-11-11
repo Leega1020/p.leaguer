@@ -1,0 +1,296 @@
+.text4{
+    color:#778595;
+    font-family: Noto Sans TC;
+    font-size: 24px;
+    font-style:normal;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+    margin-top: 13px;
+}
+.head1{
+    width: 100%;
+    height: 100px;
+    padding-top: 70px;
+    background-color: #c6c5c5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.head1 P{
+    color: rgb(0, 0, 0);
+    font-family: Noto Sans TC;
+    font-size: 36px;
+    font-style:normal;
+    font-weight: 700;
+}
+.playerbody{
+    width: 1920px;
+    height: auto;
+    display: flex;
+    margin: 0 auto;
+    margin-top:80px ;
+    flex-wrap: wrap;
+}
+.selection{
+    width: 1200px;
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+}
+.select{
+    border-radius: 30px ;
+    border: 1px solid #778595;
+    display: flex;
+    box-sizing: border-box;
+    flex:1.3 
+    
+}
+
+.select input{
+    text-decoration: none;
+    background-color:#f6f6f6;
+    border-style: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px 0px 0px 30px;
+    border-left: 1px solid #778595;
+    box-sizing: border-box;
+    flex:2;
+}
+input[type="text"] {
+    color:#778595;
+    font-family: Noto Sans TC;
+    font-size: 20px;
+    font-style:normal;
+    font-weight: 400;
+   
+}
+.select:nth-child(1){
+    border-radius: 30px ;
+    border: 1px solid #778595;
+    display: flex;
+    flex:1.7 
+}
+
+.p1{
+    flex: 1.5;
+    margin-left: 20px;
+}
+.p1:nth-child(1){
+    flex: 0.8;
+    margin-left: 20px;
+}
+.p2{
+    flex: 3;
+    text-align: start;
+   margin-left: 15px;
+}
+.select img{
+    width: 25px;
+    height: auto;
+    object-fit: contain;
+    margin-right: 30px;
+    cursor: pointer;
+}
+button{
+    flex: 1;
+    border-radius: 30px ;
+    border:none;
+    background-color:#f6f6f6;
+    padding: 10px 20px;
+    cursor: pointers;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button P{
+    color:#485059;
+    font-family: Noto Sans TC;
+    font-size: 20px;
+    font-style:normal;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+}
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0; /* 可以根据需要调整内边距 */
+    /* 添加您的自定义样式 */
+}
+
+/* 设置背景图片 */
+.select select {
+    background: url('/static/images/down.png') no-repeat right center;
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    appearance: none; 
+    width: 25px;
+    height: auto;
+    object-fit: contain;
+    cursor: pointer;
+    background-size: 25px 25px;
+    background-position:80%;
+}
+
+
+.bar{
+    width: 1920px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.bar img{
+    width: 10px;
+    height: auto;
+    object-fit: contain;
+}
+/* ---------------- < player-section > ------------------ */
+.player_container{
+    width: 1920px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 80px;
+    
+}
+.p_title{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    background-color: #ffffff;
+    align-items: center;
+}
+.p_t{
+    border-top: 10px solid #28313c;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#ececec;
+    border-radius: 10px;
+    width: 250px;
+    margin-left: 30px;
+}
+.p_t1{
+    color: rgb(67, 66, 66);
+    font-family: Noto Sans TC;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    text-align:center;
+    margin: 0;
+}
+.mytable{
+    width: 1920px;
+    background-color:#ffffff; 
+    margin-top: 20px;
+    border: 10px solid #ececec;
+    border-radius: 15px;
+    border-top: 15px solid #28313c;
+}
+.p_list{
+    width: 100%;
+    height: auto;
+}
+.list_tltle{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    border-bottom: 1px solid #9e9e9e;
+}
+.list_tltle >th{
+    color:#909090;
+    font-family: Noto Sans TC;
+    font-size: 24px;
+    font-style:normal;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+    margin-top: 13px;
+    text-align: center;
+    flex:0.5;
+}
+
+
+.list_tltle >th:nth-child(7){
+    flex: 0.8;
+}
+.list_tltle >th:nth-child(4){
+    flex: 1;
+}
+.list_tltle >th:nth-child(5){
+    flex: 0.5;
+}
+.list_tltle >th:nth-child(6){
+    flex: 0.8;
+}
+.list_tltle >th:nth-child(8){
+    flex: 0.8;
+}
+.list_tltle >th:nth-child(9){
+    flex: 0.8;
+}
+.list_tltle >th:nth-child(3){
+    flex: 0.8;
+}
+.list_tltle2{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    background-color: #ffffff;
+    border-bottom: 5px solid #e4e4e4;
+}
+.list_tltle2 >th{
+    color: rgb(67, 66, 66);
+    font-family: Noto Sans TC;
+    font-size: 24px;
+    font-style:normal;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+    margin-top: 13px;
+    text-align: center;
+    flex:0.5;
+}
+.list_tltle2 >th:nth-child(7){
+    flex: 0.8;
+}
+.list_tltle2 >th:nth-child(4){
+    flex: 1;
+}
+.list_tltle2 >th:nth-child(5){
+    flex: 0.5;
+}
+.list_tltle2 >th:nth-child(6){
+    flex: 0.8;
+}
+.list_tltle2 >th:nth-child(8){
+    flex: 0.8;
+}
+.list_tltle2 >th:nth-child(9){
+    flex: 0.8;
+}
+.list_tltle2 >th:nth-child(3){
+    flex: 0.8;
+}
+.myimg{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.teamcolor {
+    color: #00306a;
+}

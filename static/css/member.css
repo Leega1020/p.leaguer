@@ -1,0 +1,210 @@
+.text4{
+    color:#1e1e1e;
+    font-family: Arial Narrow;
+    font-size: 94px;
+    margin: 0;
+    margin-left: 30px;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+.headboard{
+    width: 100%;
+    height: auto;
+    padding-top: 70px;
+}
+.headContainer{
+    width: 1920px;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+.headContainer img{
+    width: 100px;
+    height: 100px;
+    margin-left: 30px;
+}
+.a1{
+    position: relative;
+}
+.a2{
+    position: absolute;
+    top:0
+}
+/* ---------------- < memberContainer-section > ------------------ */
+.memberContainer{
+    width: 100%;
+    height: auto;
+}
+.memberBoard {
+    width: 1920px;
+    height: 1300px;
+    background-color: #27313b;
+    margin: 0 auto;
+    overflow: auto; 
+    margin-top: 40px;
+}
+
+.boardTitle{
+    width: calc(100% - 400px);
+    height: 320px;
+    background-color: white;
+    margin: 80px auto 0 !important;
+    border-radius: 10px;
+    position: relative;
+}
+.b_P{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+.b_P P{
+    color:#1e1e1e;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 64px;
+    margin: 0;
+    margin-left: 30px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-top: 20px;
+}
+.boardTitle{
+    position: relative;
+}
+.boardTitle .dayul{
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+.dayul li{
+    width: 100%;
+    color:#1e1e1e;
+    font-family: Arial Narrow;
+    font-size: 28px;
+    margin: 0;
+    margin-left: 30px;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+.boardTitle .picul{
+    width: 100%;
+    
+    height: 200px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top:120px;
+    border: 1px solid transparent;border-image: repeating-linear-gradient(to right, transparent, transparent 1px, orange 15px, orange 80px);
+    border-image-slice: 1; 
+    box-sizing: border-box; 
+    
+    
+}
+.picul li img{
+    padding-top: 30px;
+    width: 100%;
+    height: auto;
+    
+}
+.picul li{
+    border: 1px solid transparent;border-image: repeating-linear-gradient(to right, transparent, transparent 1px, orange 15px, orange 80px);
+    border-image-slice: 1; 
+    box-sizing: border-box; 
+}
+
+.hhContainer{
+    width:500px;
+    height: 800px;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+.mainHead{
+    width: 400px;
+    height: 420px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #02182e;
+    background-image: url('/static/images/fubonbg.jpg'); 
+    background-size: cover; 
+    background-position: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+}
+.headpic{
+    height: 290px;
+    
+}
+.username{
+    width: 500px;
+    height: auto;
+    margin-top: -60px;
+}
+.username P{
+    margin: 0;
+    text-align: center;
+}
+.perday{
+    flex:1;
+}
+.daypic{
+    width: 400px;
+    height: auto;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 120px;
+    gap:10px;
+}
+.daypic img{
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    
+    
+}
+.perdayP{
+    color:rgb(255, 255, 223);
+    font-family: Arial Narrow;
+    font-size: 16px;
+    font-weight: 600;
+    
+    display: flex;
+    justify-content: center;
+}
+.perdaypic{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+    background-color: rgb(35, 44, 53);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3s);
+}
+.perdayP p{
+    margin: 0;
+    margin-top: 20px;
+}
+
+
+button {
+    width: 1520px; /* Adjust the width as needed */
+    height: 150px; /* Adjust the height as needed */
+    margin: 80px auto 0; /* Auto margin for center alignment */
+    background-color: #1e1e1e;
+    border-radius: 15px;
+    color: white; /* Text color */
+    font-size: 38px; /* Adjust the font size as needed */
+    font-weight: bold; /* Adjust the font weight as needed */
+    border: none; /* Remove border for a cleaner look */
+    cursor: pointer;
+    display: block; /* Make the button a block element for auto margin to work */
+}
+footer{
+    width: 100%;
+    height: 300px;
+    margin-top: 120px;
+    background-color: black;
+}
