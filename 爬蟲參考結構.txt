@@ -1,0 +1,118 @@
+c未來賽事表c
+regular_season24
+.guest_team     ------- 客隊
+.master_team    ------- 主隊
+.date           ------- 日期 '11/11'
+.day            ------- 星期 '(六)', '(日)
+.time           ------- 時間 '17:00', '14:30'
+.locations      ------- 場地
+.gameId         ------- 賽場id
+.gameNumber     ------- 總球賽編號
+
+#球隊表
+plg_team
+.team1     ------- 新北國王 [king]
+.team2     ------- 臺北富邦勇士 [taipei]
+.team3     ------- 桃園璞園領航猿 [taoyuan_logo]
+.team4     ------- 福爾摩沙夢想家 [taihsin]
+.team5     ------- 高雄17直播鋼鐵人 [kauo]
+.team6     ------- 新竹攻城獅 [lion]
+
+-----------－－－－－－------------> 外鍵關聯球隊數據
+＃球隊數據
+.team       ------- 球隊
+.scores     ------- 得分
+.point2     ------- 兩分命中率 %
+.point3     ------- 三分命中率 %
+.foulShot   ------- 罰球命中率 %
+.backboards ------- 籃板
+.assists    ------- 助攻
+.block      ------- 阻攻
+.p_miss     ------- 失誤
+.p_foul     ------- 犯規
+.paint      ------- 禁區得分
+.logo       ------- 球隊圖
+
+#近期完賽賽事表(倒敘)
+table-23
+.guest_team     ------- 客隊
+.master_team    ------- 主隊
+.dates          ------- 日期 (11/05)
+.weeks           ------- 星期
+.times          ------- 時間 (17:00)
+.locations      ------- 場地
+.gameIds        ------- 賽場id
+#近期完賽賽事表-詳細數據
+[.guest_team    ------- 客隊
+.master_team    ------- 主隊
+.dates          ------- 日期 (11/05)
+.days           ------- 星期
+.times          ------- 時間 (17:00)]
+innerjoin重複的數據就不用再抓一次
+(內部部分)
+.guestQ1        ------- 客隊Q1
+.guestQ2        ------- 客隊Q2
+.guestQ3        ------- 客隊Q3
+.guestQ4        ------- 客隊Q4
+.guestFinal     ------- 客隊Final
+
+.masterQ1        ------- 主隊Q1
+.masterQ2        ------- 主隊Q2
+.masterQ3        ------- 主隊Q3
+.masterQ4        ------- 主隊Q4
+.masterFinal     ------- 主隊Final
+
+.g_backnumbers   ------- 客隊背號
+.g_players       ------- 客隊球員
+.g_onTimes       ------- 客隊分鐘
+.g_backboards    ------- 客隊籃板
+.g_assists       ------- 客隊助攻
+.g_scores        ------- 客隊得分
+
+.g_foul          ------- 客隊罰球
+.g_foulShots     ------- 客隊犯規
+
+.m_backnumbers   ------- 主隊背號
+.m_players       ------- 主隊球員
+.m_onTimes       ------- 主隊分鐘
+.m_backboards    ------- 主隊籃板
+.m_assists       ------- 主隊助攻
+.m_scores        ------- 主隊得分
+
+.m_foul          ------- 主隊罰球
+.m_foulShots     ------- 主隊犯規
+
+
+
+
+
+c球員數據表c
+.playerName      ------- 球員
+.backNumber      ------- 球員背號
+.p_team          ------- 球員團隊
+.p_counts        ------- 球員上場次數
+.p_time          ------- 球員上場時間
+.point2          ------- 兩分命中率
+.point3          ------- 三分命中率
+.p_foulShots     ------- 罰球命中率
+.p_scores        ------- 得分
+.p_backboards    ------- 籃板
+.p_assists       ------- 助攻
+.p_intercept     ------- 抄截
+.p_miss          ------- 失誤
+.p_foul          ------- 犯規
+.nickNmae        ------- 名人榜
+
+#我的最愛球員
+.userId
+.ALLPlayer
+
+------->抓最近一次球賽數據
+->首頁數據
+    -> selenium抓gameId（最近的一次）
+        （session gameId要更新）
+    -> 從完整賽程撈符合gameId的基本資訊
+->詳細數據
+    ->用存取的gameId
+    ->進入分頁，POST，抓取數據，存資料庫
+    ->GET取得資料

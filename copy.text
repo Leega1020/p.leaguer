@@ -1,0 +1,66 @@
+def goOverGame():
+    url = "https://pleagueofficial.com/schedule-regular-season/2023-24"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+    }
+
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        data = response.text
+        root = BeautifulSoup(data, "html.parser")
+    all_teams = root.select('span.PC_only.fs14')
+    for i in all_teams:
+        guest_team=all_teams[0].string
+        main_team=all_teams[1].string
+    
+    date=root.find("h5",class_="fs16 mt-2 mb-1")
+    dates=date.string
+    week=root.find("h5",class_="fs12 mb-2")
+    weeks=week.string
+    time=root.find("h6",class_="fs12")
+    times=time.string
+
+    location=root.find("h5",class_="fs12 mb-0")
+    locations=location.string
+    gameId=root.find("h5",class_="fs14 mb-2")
+    gameIds=gameId.string
+
+    cur=con.cursor()
+    cur.execute("SELECT gameNumber FROM regular_season24 WHERE gameId=%s",(gameIds,))
+    result=cur.fetchone()[0]
+
+    if result:
+        nextLink="https://pleagueofficial.com/game/"+str(result)
+        
+        headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+        }
+
+        response = requests.get(nextLink, headers=headers)
+        
+        if response.status_code == 200:
+            data = response.text
+            root = BeautifulSoup(data, "html.parser")
+            guestQ1 = root.find('td', id="q1_away").string
+            guestQ2 = root.find('td', id="q2_away").string
+            guestQ3 = root.find('td', id="q3_away").string
+            guestQ4 = root.find('td', id="q4_away").string
+            guestFinal = root.find('td', class_="score_away").string
+
+            masterQ1 = root.find('td', id="q1_home").string
+            masterQ2 = root.find('td', id="q2_home").string
+            masterQ3 = root.find('td', id="q3_home").string
+            masterQ4 = root.find('td', id="q4_home").string
+            masterFinal = root.find('td', class_="score_home").string
+
+            game_state = root.find('span', class_="badge badge-secondary").string
+            
+            okStatus="已完賽"
+            if game_state is okStatus:
+                print("ok")
+                #cur.execute("INSERT INTO over_game(gameId,guestQ1,guestQ2,guestQ3,guestQ4,guestFinal,masterQ1,masterQ2,masterQ3,masterQ4,masterFinal) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                            #,(gameIds,gameId,guestQ1,guestQ2,guestQ3,guestQ4,guestFinal,masterQ1,masterQ2,masterQ3,masterQ4,masterFinal))
+            else:print("Not Start")
+            #print(guestQ1)
+
+goOverGame()   
