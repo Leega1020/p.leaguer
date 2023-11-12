@@ -116,3 +116,41 @@ c球員數據表c
     ->用存取的gameId
     ->進入分頁，POST，抓取數據，存資料庫
     ->GET取得資料
+
+todaygame
+.gameId
+
+
+.guestQ1        ------- 客隊Q1
+.guestQ2        ------- 客隊Q2
+.guestQ3        ------- 客隊Q3
+.guestQ4        ------- 客隊Q4
+.guestFinal     ------- 客隊Final
+
+.masterQ1        ------- 主隊Q1
+.masterQ2        ------- 主隊Q2
+.masterQ3        ------- 主隊Q3
+.masterQ4        ------- 主隊Q4
+.masterFinal     ------- 主隊Final
+
+todaygame-guest
+.gameId
+.backnumber
+.name
+.ontime
+.backboard
+.assist
+.score
+.foul
+.foulshot
+
+todaygame-master
+.gameId
+.backnumber
+.name
+.ontime
+.backboard
+.assist
+.score
+.foul
+.foulshot

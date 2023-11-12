@@ -78,7 +78,7 @@ def get_lastGame():
             "team1_pic":team1_pic
         }
             response_data_list.append(response_data)
-        print(response_data_list)
+        #print(response_data_list)
         
         #print(team_pic)
         json_data = json.dumps(response_data_list, ensure_ascii=False).encode("utf-8")
@@ -101,7 +101,7 @@ def get_playerList():
     choosed_team = request.json.get("team")
     typeName = request.json.get("typeName")
     
-    print(typeName)
+    #print(typeName)
     cur = con.cursor()  # 在这里初始化 cur
 
    
@@ -223,7 +223,7 @@ def line_signin():
         access_token = data.get('access_token')
         refresh_token=data.get("refresh_token")
         session["refresh_token"]=refresh_token
-        print(refresh_token)
+        #print(refresh_token)
         session["access_token"]=access_token
         get_user_profile_url = "https://api.line.me/v2/profile"
         headers = {
@@ -235,39 +235,177 @@ def line_signin():
         if profile_response.status_code == 200:
             user_profile = profile_response.json()
             userId=user_profile.get("userId")
-           
-            
-            return userId
+            session["userId"]=userId
+            cur=con.cursor()
+            cur.execute("SELECT*FROM userInfo WHERE userId=%s",(userId,))
+            result=cur.fetchone()
+            if result:
+                print("founded")
+                return jsonify({"data":"already signuped"})
+            else:
+                cur.execute("INSERT INTO userInfo (userId) VALUES (%s)", (userId,))
+                con.commit()
+                print(userId)
+                print("insert DB")
+                return userId
+@app.route("/aa/signin")
+def getSignin():
+    access_token = session.get("access_token")
+    userId = session.get("userId")
+
+    response_data = {"token": access_token, "userId": userId}
+    return jsonify(response_data)
+
 @app.route("/api/signout", methods=["POST"])
 def logout_line_user():
-    access_token = session.get("access_token")
-    refresh_token = session.get("refresh_token")
+    token = request.headers.get('Authorization').split(' ')[1]
+    if token:
+        access_token = session.get("access_token")
+        refresh_token = session.get("refresh_token")
 
-    if not access_token:
-        print("No access token found.")
-        return jsonify({"data": "notok"})
+        if not access_token:
+            print("No access token found.")
+            return jsonify({"data": "notok"})
 
-    revoke_url = "https://api.line.me/oauth2/v2.1/revoke"
-    headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-    payload = {
-        "access_token": access_token,
-        "client_id": CHANNEL_ID,
-        "client_secret": CHANNEL_SECRET  
-    }
+        revoke_url = "https://api.line.me/oauth2/v2.1/revoke"
+        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+        payload = {
+            "access_token": access_token,
+            "client_id": CHANNEL_ID,
+            "client_secret": CHANNEL_SECRET  
+        }
 
-    response = requests.post(revoke_url, headers=headers, data=payload)
+        response = requests.post(revoke_url, headers=headers, data=payload)
 
-    print(response)
+        print(response)
 
-    if response.status_code == 200:
-        print("User logged out successfully.")
-        return jsonify({"data": "ok"})
+        if response.status_code == 200:
+            print("User logged out successfully.")
+            return jsonify({"data": "ok"})
+        else:
+            print(f"Failed to log out. Status code: {response.status_code}")
+            print(response.text)
+            return jsonify({"data": "notnotok"})
+
+@app.route("/api/likePlayer", methods=["POST"])
+def saveLikePlayer():
+    
+    token=request.headers.get("Authorization").split(" ")[1]
+    cplayerName=request.json.get("name")
+    userId=session.get("userId")
+    if token:
+        cur=con.cursor()
+        cur.execute("SELECT*FROM memberLike WHERE userId=%s AND playerName=%s",(userId,cplayerName))
+        result1=cur.fetchall()
+        print(result1)
+        if  len(result1) > 0:
+            return jsonify({"data":"already saved"})
+          
+        else:
+            cur.execute("SELECT*FROM player WHERE playerName=%s",(cplayerName,))
+            result=cur.fetchone()
+            print(result)
+            cur.execute("INSERT INTO memberLike(userId,backNumber, playerName, p_team, p_counts, p_time, point2, point3, p_foulShots, p_scores, p_backboards, p_assists, p_intercept, p_miss, p_foul) VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                        (userId,result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10], result[11], result[12], result[13], result[14]))
+            con.commit()
+            return jsonify({"data":"ok"})
+
+@app.route("/api/getLikePlayer", methods=["GET"])
+def getLikePlayer():
+    
+    token = request.headers.get('Authorization').split(' ')[1]
+    userId=request.headers.get('userId')
+    print(userId)
+    response_data = []  
+    if userId is None:
+        return jsonify({"data":None})
     else:
-        print(f"Failed to log out. Status code: {response.status_code}")
-        print(response.text)
-        return jsonify({"data": "notnotok"})
+        cur=con.cursor()
+        cur.execute("SELECT*FROM memberLike WHERE userId=%s",(userId,))
+        result = cur.fetchall()
+        for i in result:
+            player_data = {
+                "backNumber": i[2],
+                "playerName": i[3],
+                "p_team": i[4],
+                "p_counts": i[5],
+                "p_time": i[6],
+                "point2": i[7],
+                "point3": i[8],
+                "p_foulShots": i[9],
+                "p_scores": i[10],
+                "p_backboards": i[11],
+                "p_assists": i[12],
+                "p_intercept": i[13],
+                "p_miss": i[14],
+                "p_foul": i[15],
+            }
+            response_data.append(player_data)
 
+        
+        return jsonify(response_data)
 
+@app.route("/api/getTodayGame")
+def getTodayGame():
+    cur = con.cursor()
+    cur.execute("SELECT * FROM today_game")
+    result = cur.fetchone()
+    gameId = result[1]
+    
+    # 賽程（主客隊、日期）
+    cur.execute("SELECT * FROM regular_season24 WHERE gameId=%s", (gameId,))
+    gameInfo = cur.fetchall()
+   
+    masterTeam = gameInfo[0][2]
+    guestTeam = gameInfo[0][1]
+    
+    # 隊伍（圖片）LIKE %s", ("%" + typeName + "%",)
+    cur.execute("SELECT logo FROM plg_team WHERE team LIKE %s", ("%" + masterTeam + "%",))
+    masterTeamLogo = cur.fetchall()[0]
+    print(masterTeamLogo)
+    cur.execute("SELECT logo FROM plg_team WHERE team LIKE %s", ("%" + guestTeam + "%",))
+    guestTeamLogo = cur.fetchall()[0]
+   
+    # 分數（內容：數據、球員數據）
+    today_guest_List=[]
+    today_master_List=[]
+    cur.execute("SELECT * FROM today_game WHERE gameId = %s", (gameId,))
+    todayGameData = cur.fetchall()[0]
+    cur.execute("SELECT * FROM today_guest_player WHERE gameId = %s", (gameId,))
+    today_guest_playerData = cur.fetchall()
+    for i in today_guest_playerData:
+        today_guest_List.append(i)
+    cur.execute("SELECT * FROM today_master_player WHERE gameId = %s", (gameId,))
+    today_master_playerData = cur.fetchall()
+    for i in today_master_playerData:
+        today_master_List.append(i)
+    response_data = {
+        "year": gameInfo[0][3],
+        "month": gameInfo[0][4],
+        "day": gameInfo[0][5],
+        "time": gameInfo[0][7],
+        "masterTeam": masterTeam,
+        "guestTeam": guestTeam,
+        "masterTeamLogo": masterTeamLogo[0],
+        "guestTeamLogo": guestTeamLogo[0],
+        "gQ1": todayGameData[2],
+        "gQ2": todayGameData[3],
+        "gQ3": todayGameData[4],
+        "gQ4": todayGameData[5],
+        "gQFinal": todayGameData[6],
+        "mQ1": todayGameData[7],
+        "mQ2": todayGameData[8],
+        "mQ3": todayGameData[9],
+        "mQ4": todayGameData[10],
+        "mQFinal": todayGameData[11],
+        "today_guest_List":today_guest_List,
+        "today_master_List":today_master_List
+    }
+    print(response_data)
+    return jsonify(response_data)
+
+    
+    
 
 # Pages
 @app.route("/")
@@ -279,4 +417,7 @@ def player():
 @app.route("/signin")
 def signin():
 	return render_template("line.html") 
+@app.route("/game")
+def todayGame():
+	return render_template("games.html") 
 app.run()

@@ -509,7 +509,7 @@ def Gamed():
     driver = webdriver.Chrome()  # 请根据您的浏览器选择合适的驱动程序
 
     # 打开网页
-    url = "https://pleagueofficial.com/schedule-regular-season/2022-23"
+    url = "https://pleagueofficial.com/schedule-regular-season/2023-24"
     driver.get(url)
 
     # 找到"已完成賽事"标签并点击
@@ -529,9 +529,11 @@ def Gamed():
     cur.execute("SELECT gameNumber FROM regular_season24 WHERE gameId=%s",(match_id,))
     result=cur.fetchone()[0]
     print(match_id)
-    if result:
+    cur.execute("SELECT gameId FROM today_game WHERE gameId=%s",(match_id,))
+    founded_game=cur.fetchone()
+    if founded_game is None:
         nextLink="https://pleagueofficial.com/game/"+str(result)
-        
+        print(nextLink)
         headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
         }
@@ -553,8 +555,91 @@ def Gamed():
             masterQ4 = root.find('td', id="q4_home").string
             masterFinal = root.find('td', class_="score_home").string
 
-            game_state = root.find('span', class_="badge badge-secondary").string
-            print("ok")
+            #game_state = root.find('span', class_="badge badge-secondary").string
+            #print(guestQ1,guestQ2,guestQ3,guestQ4,masterQ1,masterQ2,masterQ3,masterQ4)
+            driver=webdriver.Chrome(options=options)
+
+            driver.get(nextLink)  # 替换为实际的页面 URL
+
+            import time
+            time.sleep(1) 
+
+            # 统一的总表格
+            g_all_data = []
+            m_all_data = []
+            # 处理 away_table
+            table_rows = driver.find_elements(By.CSS_SELECTOR, "table#away_table tbody tr")
+
+            for row in table_rows:
+                data = row.text
+                fields = data.split()
+                if len(fields) >= 15:
+                    player_data = {}
+                    player_data["backnumber"] = fields[0] if fields[0] else "N/A"
+                    if "〇" in data:
+                        player_data["player"] = fields[2] if fields[2] else "N/A"
+                        player_data["onTime"] = fields[3] if fields[3] else "N/A"
+                        player_data["backboard"] = fields[11] if fields[11] else "N/A"
+                        player_data["assist"] = fields[14] if fields[14] else "N/A"
+                        player_data["score"] = fields[10] if fields[10] else "N/A"
+                        player_data["foul"] = fields[8]
+                        player_data["foulShot"] = fields[18] if fields[18] else "N/A"
+                    else:
+                        player_data["player"] = fields[1] if fields[1] else "N/A"
+                        player_data["onTime"] = fields[2] if fields[2] else "N/A"
+                        player_data["backboard"] = fields[10] if fields[10] else "N/A"
+                        player_data["assist"] = fields[13] if fields[13] else "N/A"
+                        player_data["score"] = fields[9] if fields[9] else "N/A"
+                        player_data["foul"] = fields[7]
+                        player_data["foulShot"] = fields[17] if fields[17] else "N/A"
+
+                    g_all_data.append(player_data)
+
+            # 处理 home_table
+            table_master = driver.find_elements(By.CSS_SELECTOR, "table#home_table tbody tr")
+
+            for row2 in table_master:
+                data2 = row2.text
+                fields2 = data2.split()
+                if len(fields2) >= 15:
+                    player_data = {}
+                    player_data["backnumber"] = fields2[0] if fields2[0] else "N/A"
+                    if '〇' in data2:
+                        player_data["player"] = fields2[2] if fields2[2] else "N/A"
+                        player_data["onTime"] = fields2[3] if fields2[3] else "N/A"
+                        player_data["backboard"] = fields2[11] if fields2[11] else "N/A"
+                        player_data["assist"] = fields2[14] if fields2[14] else "N/A"
+                        player_data["score"] = fields2[10] if fields2[10] else "N/A"
+                        player_data["foul"] = fields2[8]
+                        player_data["foulShot"] = fields2[18] if fields2[18] else "N/A"
+                    else:
+                        player_data["player"] = fields2[1] if fields2[1] else "N/A"
+                        player_data["onTime"] = fields2[2] if fields2[2] else "N/A"
+                        player_data["backboard"] = fields2[10] if fields2[10] else "N/A"
+                        player_data["assist"] = fields2[13] if fields2[13] else "N/A"
+                        player_data["score"] = fields2[9] if fields2[9] else "N/A"
+                        player_data["foul"] = fields2[7]
+                        player_data["foulShot"] = fields2[17] if fields2[17] else "N/A"
+
+                    m_all_data.append(player_data)
+            #print(m_all_data[0]["backnumber"])
+#
+                #print(data)
+            
+            cur.execute("INSERT INTO today_game(gameId,guestQ1,guestQ2,guestQ3,guestQ4,guestFinal,masterQ1,masterQ2,masterQ3,masterQ4,masterFinal) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+            (match_id,guestQ1,guestQ2,guestQ3,guestQ4,guestFinal,masterQ1,masterQ2,masterQ3,masterQ4,masterFinal))
+
+            con.commit()
+            for i in g_all_data:
+                cur.execute("INSERT INTO today_guest_player(gameId,backnumber,name,ontime,backboard,assist,score,foul,foulshot) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                            (match_id,i["backnumber"],i["player"],i["onTime"],i["backboard"],i["assist"],i["score"],i["foul"],i["foulShot"]))
+                con.commit()
+            for i in m_all_data:
+                cur.execute("INSERT INTO today_master_player(gameId,backnumber,name,ontime,backboard,assist,score,foul,foulshot) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                            (match_id,i["backnumber"],i["player"],i["onTime"],i["backboard"],i["assist"],i["score"],i["foul"],i["foulShot"]))
+                con.commit()
+            driver.quit()
+    else:print("already inserted")
 
 Gamed()
 

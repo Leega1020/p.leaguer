@@ -10,45 +10,7 @@
         <button id="lineLoginBtn">LINE 登入</button>
         <button id="lineOutBtn">LINE 登出</button>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
-        <script>
-            $('#lineLoginBtn').on('click', function(e) {
-                let client_id = '2001585939';
-                let redirect_uri = 'http://127.0.0.1:5000/get/signin';
-                let link = 'https://access.line.me/oauth2/v2.1/authorize?';
-                link += 'response_type=code';
-                link += '&client_id=' + client_id;
-                link += '&redirect_uri=' + redirect_uri;
-                link += '&state=login';
-                link += '&scope=openid%20profile';
-                URL += '&scope=openid%20profile%20email';
-                window.location.href = link;
-            });
-
-            const lineOutBtn=document.querySelector("#lineOutBtn")
-            lineOutBtn.addEventListener("click", () => {
-    // 使用 fetch 發送 POST 請求到登出 API
-    fetch("/api/signout", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        // 如果有需要，可以添加 body，例如傳遞用戶相關的資訊
-        // body: JSON.stringify({ userId: 'your_user_id' }),
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log("User logged out successfully.");
-        } else {
-            console.error("Failed to log out. Status code:", response.status);
-        }
-    })
-    .catch(error => {
-        console.error("Error during logout:", error);
-    });
-});
-            
-
-        </script>
+        <script src='/static/js/sign.js'></script>
     </body>
     </html>
 

@@ -1,7 +1,9 @@
 let isClicked = false;
 let choosed_team = "";
 let typeName = "";
-let data; // 添加一個變數用來保存從伺服器獲取的數據
+let data; 
+let isStarClicked = false;
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const selected = document.querySelector("#open");
@@ -58,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (filteredData.length > 0) {
             const player = filteredData[0];
+            console.log(player)
             renderPlayer(player);
         }
     });
@@ -153,13 +156,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 tbody.appendChild(list_tltle);
                 imgth.addEventListener("click", (event) => {
-                    if (isClicked) {
-                        event.target.src = "/static/images/star (1).png";
-                    } else {
-                        event.target.src = "/static/images/star.png";
-                    }
-                    isClicked = !isClicked; // 切換圖片的狀態
+                    event.target.src = "/static/images/star.png";
+                    let playerData = getPlayerData(event.target.closest('tr'));
+                    console.log(playerData);
+                    addToFavorites(playerData);
+                    isStarClicked = true;
                 });
+                
             });
         }
     }
@@ -240,14 +243,172 @@ document.addEventListener("DOMContentLoaded", function () {
         list_tltle.appendChild(perth14);
     
         tbody.appendChild(list_tltle);
+       
         imgth.addEventListener("click", (event) => {
-            if (isClicked) {
-                event.target.src = "/static/images/star (1).png";
-            } else {
-                event.target.src = "/static/images/star.png";
-            }
-            isClicked = !isClicked; // 切換圖片的狀態
+            event.target.src = "/static/images/star.png";
+            let playerData = getPlayerData(event.target.closest('tr'));
+            console.log(playerData);
+            addToFavorites(playerData);
+            isStarClicked = true;
         });
+        
+       
     }
+    
+
+    
+       
+
+       
+        
+
+            function getPlayerData(row) {
+                let playerData = {
+                    name: row.querySelector('th:nth-child(3)').textContent,
+                    
+                };
+                console.log(playerData)
+                return playerData;
+            }
+        
+        function addToFavorites(playerData) {
+            let token=localStorage.getItem("token")
+            console.log(token)
+            fetch("/api/likePlayer",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":`Bearer ${token}`
+                },
+                body:JSON.stringify(playerData),
+                
+            })
+            .then(response=>{
+                if (response.status === 200){
+                    return response.json()
+                } else{
+                    throw new Error("")
+                }
+            })
+            .then(data=>{
+                console.log("likePlayer_saved")
+               
+            })
+            .catch(error => {
+                console.error("API請求錯誤", error)
+               
+            });}
+            
+       
+
+        
+            const userLike=document.querySelector("#userLike")
+            userLike.addEventListener("click",()=>{
+                let token=localStorage.getItem("token")
+                let userId=localStorage.getItem("userId")
+                fetch("/api/getLikePlayer",{
+                    method:"GET",
+                    headers:{
+                        "Authorization":`Bearer ${token}`,
+                        "userId":userId
+                    }
+                })
+                .then(response=>{
+                    if (response.status === 200){
+                        return response.json()
+                    } else{
+                        throw new Error("")
+                    }
+                })
+                .then(data=>{
+                    let tbody = document.getElementById("mytbody");
+                    tbody.innerHTML=""
+                    console.log(data)
+                    data.forEach(player => {
+                       
+        const list_tltle = document.createElement("tr");
+        list_tltle.classList.add("list_tltle2");
+    
+        const imgth = document.createElement("th");
+        const img = document.createElement("img");
+        img.src = "/static/images/star (1).png";
+        img.classList.add("myimg");
+        imgth.appendChild(img);
+    
+        const perth1 = document.createElement("th");
+        const perth2 = document.createElement("th");
+        const perth3 = document.createElement("th");
+        const perth4 = document.createElement("th");
+        const perth5 = document.createElement("th");
+        const perth6 = document.createElement("th");
+        const perth7 = document.createElement("th");
+        const perth8 = document.createElement("th");
+        const perth9 = document.createElement("th");
+        const perth10 = document.createElement("th");
+        const perth11 = document.createElement("th");
+        const perth12 = document.createElement("th");
+        const perth13 = document.createElement("th");
+        const perth14 = document.createElement("th");
+    
+        perth1.textContent = player.backNumber;
+        perth2.textContent = player.playerName;
+        perth3.textContent = player.p_team;
+        perth4.textContent = player.p_counts;
+        perth5.textContent = player.p_time;
+        perth6.textContent = player.point2;
+        perth7.textContent = player.point3;
+        perth8.textContent = player.p_foulShots;
+        perth9.textContent = player.p_scores;
+        perth10.textContent = player.p_backboards;
+        perth11.textContent = player.p_assists;
+        perth12.textContent = player.p_intercept;
+        perth13.textContent = player.p_miss;
+        perth14.textContent = player.p_foul;
+    
+        perth1.style.fontFamily = "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
+    
+        if (perth3.textContent === "臺北富邦勇士") {
+            perth1.style.color = "#005378";
+        } else if (perth3.textContent === "新北國王") {
+            perth1.style.color = "#d3bd00";
+        } else if (perth3.textContent === "新竹街口攻城獅") {
+            perth1.style.color = "#51308e";
+        } else if (perth3.textContent === "福爾摩沙台新夢想家") {
+            perth1.style.color = "#52740e";
+        } else if (perth3.textContent === "桃園領航猿") {
+            perth1.style.color = "#ea5504";
+        } else {
+            perth1.style.color = "#7d0004";
+        }
+    
+        list_tltle.appendChild(imgth);
+        list_tltle.appendChild(perth1);
+        list_tltle.appendChild(perth2);
+        list_tltle.appendChild(perth3);
+        list_tltle.appendChild(perth4);
+        list_tltle.appendChild(perth5);
+        list_tltle.appendChild(perth6);
+        list_tltle.appendChild(perth7);
+        list_tltle.appendChild(perth8);
+        list_tltle.appendChild(perth9);
+        list_tltle.appendChild(perth10);
+        list_tltle.appendChild(perth11);
+        list_tltle.appendChild(perth12);
+        list_tltle.appendChild(perth13);
+        list_tltle.appendChild(perth14);
+    
+        tbody.appendChild(list_tltle);
+                    });
+                })
+                .catch(error => {
+                    console.error("API請求錯誤", error)
+                   
+                });
+
+
+
+                
+            })
+        
     
 });
