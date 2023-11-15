@@ -7,10 +7,14 @@
     font-weight: 900;
     letter-spacing: -2px;
 }
+.memberBody{
+    background-color: white;
+}
 .headboard{
     width: 100%;
-    height: auto;
+    height: 350px;
     padding-top: 70px;
+    background-color:#f6f6f6;
 }
 .headContainer{
     width: 1920px;
@@ -31,26 +35,59 @@
     top:0
 }
 /* ---------------- < memberContainer-section > ------------------ */
+.memberContainer1{
+    width: 100%;
+    height: auto;
+    background-color: white;
+}
 .memberContainer{
     width: 100%;
     height: auto;
+    background-color: white;
+    margin-top: 30px;
 }
-.memberBoard {
+.memberBoard2{
     width: 1920px;
-    height: 1300px;
-    background-color: #27313b;
+    height: 500px;
     margin: 0 auto;
     overflow: auto; 
     margin-top: 40px;
 }
+.memberBoard {
+    width: 1920px;
+    height: 1100px;
+    background-color: #27313b;
+    margin: 0 auto;
+    overflow: auto; 
+    margin-top: 60px;
+}
 
 .boardTitle{
-    width: calc(100% - 400px);
-    height: 320px;
+    width: calc(100% - 800px);
+    height: 270px;
     background-color: white;
     margin: 80px auto 0 !important;
     border-radius: 10px;
     position: relative;
+}
+.titleBtn{
+    width: calc(100% - 800px);
+    height: 100px;
+    margin: 0 auto;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap:30px;
+}
+.titleBtn button{
+    background-color: #bbbbbb;
+    margin: 0;
+    height: 60px; 
+    font-size: 16px; 
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 20px;
+    font-weight: 800;
+    color: rgb(39, 39, 39);
 }
 .b_P{
     width: 100%;
@@ -68,8 +105,33 @@
     letter-spacing: -2px;
     margin-top: 20px;
 }
+.b_P2{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.b_P2 P{
+    background-image: linear-gradient(to right, #ffffef, #868686); /* 起始顏色，結束顏色 */
+    color: transparent;
+    -webkit-background-clip: text; /* 將背景剪裁為文本形狀，適用於WebKit（Chrome、Safari等）瀏覽器 */
+    background-clip: text;
+    
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 84px;
+    margin: 0;
+    margin-left: 30px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-top: 40px;
+}
 .boardTitle{
     position: relative;
+    border-bottom: 10px solid #02182e;
+    border-right: 2px solid #02182e;
+    border-left: 2px solid #02182e;
+    border-top: 2px solid #02182e;
 }
 .boardTitle .dayul{
     width: 100%;
@@ -81,28 +143,29 @@
 }
 .dayul li{
     width: 100%;
-    color:#1e1e1e;
+    color:#484848;
     font-family: Arial Narrow;
     font-size: 28px;
     margin: 0;
-    margin-left: 30px;
+    margin-left: 10px;
+    margin-top: -10px;
     font-weight: 900;
-    letter-spacing: -2px;
 }
 .boardTitle .picul{
     width: 100%;
     
-    height: 200px;
+    height: 150px;
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
     position: absolute;
     top:120px;
-    border: 1px solid transparent;border-image: repeating-linear-gradient(to right, transparent, transparent 1px, orange 15px, orange 80px);
+    border: 1px solid transparent;
+    border-image: repeating-linear-gradient(to right, transparent, transparent 1px, orange 15px, orange 80px);
     border-image-slice: 1; 
     box-sizing: border-box; 
-    
+    border-bottom: 1px solid transparent; 
     
 }
 .picul li img{
@@ -112,7 +175,8 @@
     
 }
 .picul li{
-    border: 1px solid transparent;border-image: repeating-linear-gradient(to right, transparent, transparent 1px, orange 15px, orange 80px);
+    border: 1px solid transparent;
+    border-image: repeating-linear-gradient(to right, transparent, transparent 1px, orange 15px, orange 80px);
     border-image-slice: 1; 
     box-sizing: border-box; 
 }
@@ -121,7 +185,7 @@
     width:500px;
     height: 800px;
     margin: 0 auto;
-    margin-top: 80px;
+    margin-top: 100px;
 }
 .mainHead{
     width: 400px;
@@ -190,7 +254,7 @@
 
 
 button {
-    width: 1520px; /* Adjust the width as needed */
+    width: 1120px; /* Adjust the width as needed */
     height: 150px; /* Adjust the height as needed */
     margin: 80px auto 0; /* Auto margin for center alignment */
     background-color: #1e1e1e;

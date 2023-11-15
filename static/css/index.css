@@ -110,41 +110,40 @@
 }
 .headCintainer{
     position: absolute;
-    width: 500px;
-    height: 60px;
-    right: 0;
+    width: 450px;
+    height: 100px;
+    right: 100px;
     bottom:20px;
     display: flex;
 }
 .welcome{
-    width: 300px;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    
+   flex:2
 }
 .welcome img{
+    
     width: 300px;
     height: auto;
 }
 .welcome p{
     margin: 0;
     padding: 0;
-    margin-left: auto;
-    margin-top: 3px;
+    text-align: end;
 }
 .w2{
-    width: auto;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
+    margin-left: 10px;
+    position: relative;
+    flex:1
     
 }
 .w2 img{
-    width: 60px;
+    width: 50px;
     height: auto;
     margin-bottom: 0;
+}
+#c{
+    position: absolute;
+    top:20px;
+    left: 10px;
 }
 /* ---------------- < main > ------------------ */
 .mainBody{

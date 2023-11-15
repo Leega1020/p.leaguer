@@ -242,15 +242,15 @@ con = connection_pool.get_connection()
     # con.commit()
     
     # print(p_foul,paint,logo)
-
-#cur.execute("CREATE TABLE userInfo(id INT PRIMARY KEY AUTO_INCREMENT, userId VARCHAR(255))")
+cur=con.cursor()
+cur.execute("CREATE TABLE userInfo(id INT PRIMARY KEY AUTO_INCREMENT, userId VARCHAR(255), nickname VARCHAR(255), team VARCHAR(255), day1 VARCHAR(255), day2 VARCHAR(255), day3 VARCHAR(255), day4 VARCHAR(255), day5 VARCHAR(255), day6 VARCHAR(255), day7 VARCHAR(255))")
 # cur.execute("CREATE TABLE memberLike(id INT PRIMARY KEY AUTO_INCREMENT, userId VARCHAR(255), backNumber INT, playerName VARCHAR(255), p_team VARCHAR(255), p_counts INT, p_time VARCHAR(255), point2 VARCHAR(255), point3 VARCHAR(255), p_foulShots VARCHAR(255), p_scores FLOAT, p_backboards FLOAT, p_assists FLOAT, p_intercept FLOAT, p_miss FLOAT, p_foul FLOAT)")
 # con.commit()
 
 ################## 近期賽程數據 ################
-cur=con.cursor()
-cur.execute("CREATE TABLE today_game (id INT PRIMARY KEY AUTO_INCREMENT,gameId VARCHAR(255),guestQ1 VARCHAR(255),guestQ2 VARCHAR(255),guestQ3 VARCHAR(255),guestQ4 VARCHAR(255),guestFinal VARCHAR(255),masterQ1 VARCHAR(255),masterQ2 VARCHAR(255),masterQ3 VARCHAR(255),masterQ4 VARCHAR(255),masterFinal VARCHAR(255))")
-cur.execute("CREATE TABLE today_guest_player (id INT PRIMARY KEY AUTO_INCREMENT,gameId VARCHAR(255),backnumber VARCHAR(255),name VARCHAR(255),ontime VARCHAR(255),backboard VARCHAR(255),assist VARCHAR(255),score VARCHAR(255),foul VARCHAR(255),foulshot VARCHAR(255))")
-cur.execute("CREATE TABLE today_master_player (id INT PRIMARY KEY AUTO_INCREMENT,gameId VARCHAR(255),backnumber VARCHAR(255),name VARCHAR(255),ontime VARCHAR(255),backboard VARCHAR(255),assist VARCHAR(255),score VARCHAR(255),foul VARCHAR(255),foulshot VARCHAR(255))")
+# cur=con.cursor()
+# cur.execute("CREATE TABLE today_game (id INT PRIMARY KEY AUTO_INCREMENT,gameId VARCHAR(255),guestQ1 VARCHAR(255),guestQ2 VARCHAR(255),guestQ3 VARCHAR(255),guestQ4 VARCHAR(255),guestFinal VARCHAR(255),masterQ1 VARCHAR(255),masterQ2 VARCHAR(255),masterQ3 VARCHAR(255),masterQ4 VARCHAR(255),masterFinal VARCHAR(255))")
+# cur.execute("CREATE TABLE today_guest_player (id INT PRIMARY KEY AUTO_INCREMENT,gameId VARCHAR(255),backnumber VARCHAR(255),name VARCHAR(255),ontime VARCHAR(255),backboard VARCHAR(255),assist VARCHAR(255),score VARCHAR(255),foul VARCHAR(255),foulshot VARCHAR(255))")
+# cur.execute("CREATE TABLE today_master_player (id INT PRIMARY KEY AUTO_INCREMENT,gameId VARCHAR(255),backnumber VARCHAR(255),name VARCHAR(255),ontime VARCHAR(255),backboard VARCHAR(255),assist VARCHAR(255),score VARCHAR(255),foul VARCHAR(255),foulshot VARCHAR(255))")
 
 con.commit()

@@ -9,8 +9,7 @@
 </head>
 </head>
 </head>
-<body>
-    /*會員頭像 頭像選擇 簽到 登出*/
+<body class="memberBody">
     <nav>
         <div class="navbar">
             <div class="nav-logo">
@@ -33,8 +32,8 @@
             <p class="text4">PLG FANS CLUB</p>
         </div> 
     </header>
-    <section class="memberContainer">
-        <div class="memberBoard">
+    <section class="memberContainer1">
+        <div class="memberBoard2">
             <div class="boardTitle">
                 <div class="b_P"><p>SIGN BOARD</p></div>
                 <ul class="dayul">
@@ -55,13 +54,22 @@
                     <li style="opacity: 30%;"><img src="/static/images/bn_pleague-360x360-1.png"></li>
                     <li style="opacity: 30%;"><img src="/static/images/bn_pleague-360x360-1.png"></li>
                 </ul>
-              
             </div>
-            
+            <div class="titleBtn">
+                <button class="text4" style="letter-spacing: 0;">HELP</button>
+                <button class="text4" style="letter-spacing: 0;">CHANGE TEAM</button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="memberContainer">
+        
+        <div class="memberBoard">
+            <div class="b_P2" style="color: white;"><p>HONORARY MEDAL</p></div>
             <div class="hhContainer">
                 <div class="mainHead">
                     <div class="headpic">
-                        <img src="/static/images/logo.png">
+                        <img id="headpicimg" src="/static/images/logo.png">
                     </div>
                     <div class="username"><p class="text4" style="color: white;">LEE</p></div>
                 </div>
@@ -100,8 +108,10 @@
             </div>
         </div>
     </section>
-
-    <button>LOG OUT</button>
+    <button id="lineOutBtn">LINE 登出</button>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+    <script src="/static/js/member.js"></script>
+    <script src="/static/js/sign.js"></script>
     <footer></footer>
 </body>
 </html>

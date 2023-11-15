@@ -100,103 +100,58 @@ def get_lastGame():
 def get_playerList():
     choosed_team = request.json.get("team")
     typeName = request.json.get("typeName")
-    
-    #print(typeName)
-    cur = con.cursor()  # 在这里初始化 cur
+    userId = request.headers.get("userId")
+    print(userId)
+    cur = con.cursor()
+    # 先查詢用戶喜愛的球員名單
+    cur.execute("SELECT playerName FROM memberLike WHERE userId=%s", (userId,))
+    liked_players = set(row[0] for row in cur.fetchall())
 
-   
-        
+      # 在这里初始化 cur
 
-    if choosed_team == "全部隊伍" and typeName !="":
+    if choosed_team == "全部隊伍" and typeName != "":
         cur.execute("SELECT * FROM player WHERE playerName LIKE %s", ("%" + typeName + "%",))
-        result = cur.fetchall()
-        response_data = []  
-        for i in result:
-            player_data = {
-                "backNumber": i[1],
-                "playerName": i[2],
-                "p_team": i[3],
-                "p_counts": i[4],
-                "p_time": i[5],
-                "point2": i[6],
-                "point3": i[7],
-                "p_foulShots": i[8],
-                "p_scores": i[9],
-                "p_backboards": i[10],
-                "p_assists": i[11],
-                "p_intercept": i[12],
-                "p_miss": i[13],
-                "p_foul": i[14],
-            }
-            response_data.append(player_data)
-
-        json_data = json.dumps(response_data, ensure_ascii=False).encode("utf-8")
-        response = Response(json_data, content_type="application/json")
-        
-        return response
-    elif(choosed_team != "全部隊伍"):
+    elif choosed_team != "全部隊伍":
         cur.execute("SELECT * FROM player WHERE p_team=%s", (choosed_team,))
-        result = cur.fetchall()
-        
-        response_data = []  
-
-        for i in result:
-            player_data = {
-                "backNumber": i[1],
-                "playerName": i[2],
-                "p_team": i[3],
-                "p_counts": i[4],
-                "p_time": i[5],
-                "point2": i[6],
-                "point3": i[7],
-                "p_foulShots": i[8],
-                "p_scores": i[9],
-                "p_backboards": i[10],
-                "p_assists": i[11],
-                "p_intercept": i[12],
-                "p_miss": i[13],
-                "p_foul": i[14],
-            }
-            response_data.append(player_data)
-
-        json_data = json.dumps(response_data, ensure_ascii=False).encode("utf-8")
-        response = Response(json_data, content_type="application/json")
-        return response
     else:
         cur.execute("SELECT * FROM player")
-        result = cur.fetchall()
-        
-        response_data = []  
 
-        for i in result:
-            player_data = {
-                "backNumber": i[1],
-                "playerName": i[2],
-                "p_team": i[3],
-                "p_counts": i[4],
-                "p_time": i[5],
-                "point2": i[6],
-                "point3": i[7],
-                "p_foulShots": i[8],
-                "p_scores": i[9],
-                "p_backboards": i[10],
-                "p_assists": i[11],
-                "p_intercept": i[12],
-                "p_miss": i[13],
-                "p_foul": i[14],
-            }
-            response_data.append(player_data)
+    result = cur.fetchall()
+    response_data = []
 
-        json_data = json.dumps(response_data, ensure_ascii=False).encode("utf-8")
-        response = Response(json_data, content_type="application/json")
-        return response
+    for i in result:
+        player_data = {
+            "backNumber": i[1],
+            "playerName": i[2],
+            "p_team": i[3],
+            "p_counts": i[4],
+            "p_time": i[5],
+            "point2": i[6],
+            "point3": i[7],
+            "p_foulShots": i[8],
+            "p_scores": i[9],
+            "p_backboards": i[10],
+            "p_assists": i[11],
+            "p_intercept": i[12],
+            "p_miss": i[13],
+            "p_foul": i[14],
+            "imagePath": "/static/images/star.png" if i[2] in liked_players else "/static/images/star (1).png",
+        }
+        response_data.append(player_data)
+    #print(response_data)
+    json_data = json.dumps(response_data, ensure_ascii=False).encode("utf-8")
+    response = Response(json_data, content_type="application/json")
+    return response
+
 
 CHANNEL_ID = '2001585939'
 CHANNEL_SECRET = '13668f7f86fa59cd538a1455374f914c'
 REDIRECT_URI = 'http://127.0.0.1:5000/get/signin'
 
+
 @app.route('/get/signin', methods=['GET'])
 def line_signin():
+    
    
     authorization_code = request.args.get('code')
  
@@ -247,14 +202,59 @@ def line_signin():
                 con.commit()
                 print(userId)
                 print("insert DB")
-                return userId
+                return redirect("/signin")
 @app.route("/aa/signin")
 def getSignin():
-    access_token = session.get("access_token")
     userId = session.get("userId")
+    cur = con.cursor()
+    cur.execute("SELECT userId FROM userInfo WHERE userId=%s", (userId,))
+    haveuserId = cur.fetchone()
 
-    response_data = {"token": access_token, "userId": userId}
-    return jsonify(response_data)
+    if haveuserId is not None:
+        userId = haveuserId[0]
+        cur.execute("SELECT nickname FROM userInfo WHERE userId=%s", (userId,))
+        result = cur.fetchone()
+
+        if result is not None:
+            nickname = result[0]
+            response_data = {"userId": userId, "nickname": nickname}
+            return jsonify(response_data)
+        else:
+            # Handle the case where there is no nickname
+            print("No nickname found.")
+            return jsonify({"error": "No nickname found."})
+    else:
+        # Handle the case where haveuserId is None
+        print("No userId found.")
+        return jsonify({"error": "No userId found."})
+
+
+
+@app.route("/api/signInfo", methods=["POST"])
+def getSignin2():
+    userId = request.headers.get("userId")
+    signUpName = request.json.get("signUpName")
+    signUpTeam = request.json.get("signUpTeam")
+    print(userId)
+    print(signUpName)
+
+    cur = con.cursor()
+    cur.execute("SELECT nickname FROM userInfo WHERE userId=%s", (userId,))
+    result = cur.fetchone()
+
+    if result is not None:
+        cur.execute("UPDATE userInfo SET nickname=%s, team=%s WHERE userId=%s", (signUpName, signUpTeam, userId))
+        con.commit()
+        print("ok")
+        return jsonify({"data": "update ok"})
+    else:
+        print("NOY!")
+        return jsonify({"data": "error"})
+
+
+
+    #response_data = {"token": access_token, "userId": userId}
+    #return jsonify(response_data)
 
 @app.route("/api/signout", methods=["POST"])
 def logout_line_user():
@@ -404,9 +404,73 @@ def getTodayGame():
     print(response_data)
     return jsonify(response_data)
 
-    
-    
+@app.route("/api/deleteLike", methods=["DELETE"])  
+def deleteLike():
+    deleteName=request.json.get("deleteName")
+    userId=request.headers.get("userId")
+    cur=con.cursor()
+    cur.execute("DELETE FROM memberLike WHERE userId=%s AND playerName=%s",(userId,deleteName))
+    con.commit()
+    return jsonify({"data":"ok"})
 
+
+
+@app.route("/api/signday", methods=["POST"])
+def handleSignday():
+    userId = request.headers.get("userId")
+    if userId is None:
+        return jsonify({"data": "Not Signin"})
+    else:
+        checkDay = request.json.get("check")
+        cur = con.cursor()
+
+        # 檢查是否已簽到
+        cur.execute(f"SELECT {checkDay} FROM userInfo WHERE userId = %s", (userId,))
+        result = cur.fetchone()
+
+        if result[0] == "checked":
+            # 如果已簽到，返回相應響應
+            return jsonify({"data": "Already signed today!"})
+        else:
+            # 進行簽到操作
+            checked = "checked"
+            cur.execute(f"UPDATE userInfo SET {checkDay} = %s WHERE userId = %s", (checked, userId))
+
+            # 在 userInfo 表中新增簽到時間的欄位，命名為 lastSignTime
+            cur.execute("ALTER TABLE userInfo ADD COLUMN IF NOT EXISTS lastSignTime TIMESTAMP")
+            
+            # 取得當前的日期和時間
+            current_time = datetime.now()
+
+            # 更新最後簽到的時間
+            cur.execute("UPDATE userInfo SET lastSignTime = %s WHERE userId = %s", (current_time, userId))
+
+            con.commit()
+
+            return jsonify({"data": "Sign-in successful!"})
+
+
+    
+@app.route("/api/signday", methods=["GET"])
+def getSignDay():
+    userId=request.headers.get("userId")
+    if userId is None:
+        return jsonify({"data":"Not Signin"})
+    else:
+        cur=con.cursor()
+        cur.execute("SELECT day1,day2,day3,day4,day5,day6,day7 FROM userInfo WHERE userId=%s",(userId,))
+        result = cur.fetchone()
+
+        # 檢查是否有 None 值
+        has_none = any(value is None for value in result)
+
+        if has_none:
+            # 如果有 None 值，返回未簽到的天數
+            count = result.count(None)
+            return jsonify({"data": count})
+        else:
+            # 如果沒有 None 值，返回 0 表示全部都簽到
+            return jsonify({"data": 0})
 # Pages
 @app.route("/")
 def index():
@@ -416,8 +480,14 @@ def player():
 	return render_template("player.html")
 @app.route("/signin")
 def signin():
-	return render_template("line.html") 
+	return render_template("sign2.html") 
 @app.route("/game")
 def todayGame():
 	return render_template("games.html") 
+@app.route("/member")
+def member():
+	return render_template("member.html") 
+@app.route("/linesign")
+def linesign():
+	return render_template("line.html") 
 app.run()
