@@ -189,52 +189,52 @@ con = connection_pool.get_connection()
 
 ################## 球隊數據＋圖片 ################
 
-url = "https://pleagueofficial.com/stat-team/2022-23/2#recordn"
+# url = "https://pleagueofficial.com/stat-team/2022-23/2#recordn"
 
-headers = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
-}
+# headers = {
+#     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+# }
 
-response = requests.get(url, headers=headers)
+# response = requests.get(url, headers=headers)
 
-if response.status_code == 200:
-    data = response.text
-    root = BeautifulSoup(data, "html.parser")
+# if response.status_code == 200:
+#     data = response.text
+#     root = BeautifulSoup(data, "html.parser")
 
-teams_data=root.find("tbody")
-team_datas = []
-logos=[]
+# teams_data=root.find("tbody")
+# team_datas = []
+# logos=[]
 
-pic_list = ["king", "taipei", "taoyuan_logo", "taihsin", "kauo", "lion"]
-base_url = "https://d3u20ovlrk4ryy.cloudfront.net/images/"
-logos = [base_url + pic + ".png" for pic in pic_list]
+# pic_list = ["king", "taipei", "taoyuan_logo", "taihsin", "kauo", "lion"]
+# base_url = "https://d3u20ovlrk4ryy.cloudfront.net/images/"
+# logos = [base_url + pic + ".png" for pic in pic_list]
 
-for i, row in enumerate(teams_data.find_all('tr')):
-    names_data = row.find_all('a')
-    names = [name_data.get_text() for name_data in names_data]
+# for i, row in enumerate(teams_data.find_all('tr')):
+#     names_data = row.find_all('a')
+#     names = [name_data.get_text() for name_data in names_data]
 
-    columns = row.find_all('td')
-    team_stats = [column.get_text() for column in columns]
+#     columns = row.find_all('td')
+#     team_stats = [column.get_text() for column in columns]
 
-    # 使用循环的索引 i 来访问对应的 logo URL
-    team_data_with_logo = names + team_stats + [logos[i]]
+#     # 使用循环的索引 i 来访问对应的 logo URL
+#     team_data_with_logo = names + team_stats + [logos[i]]
 
-    team_datas.append(team_data_with_logo)
-#print(team_datas)
-for i in team_datas:
-    team=i[0]
-    scores=i[12]
-    point2=i[5]
-    point3=i[8]
-    foulShot=i[11]
-    backboards=i[15]
-    assists=i[16]
-    block=i[18]
-    p_miss=i[19]
-    p_foul=i[20]
-    paint=i[22]
-    logo=i[23]
-    cur=con.cursor()
+#     team_datas.append(team_data_with_logo)
+# #print(team_datas)
+# for i in team_datas:
+#     team=i[0]
+#     scores=i[12]
+#     point2=i[5]
+#     point3=i[8]
+#     foulShot=i[11]
+#     backboards=i[15]
+#     assists=i[16]
+#     block=i[18]
+#     p_miss=i[19]
+#     p_foul=i[20]
+#     paint=i[22]
+#     logo=i[23]
+#     cur=con.cursor()
     #cur.execute("CREATE TABLE plg_team(id INT PRIMARY KEY AUTO_INCREMENT, team VARCHAR(255), scores VARCHAR(255), point2 VARCHAR(255), point3 VARCHAR(255), foulShot VARCHAR(255), backboards FLOAT, assists FLOAT, block FLOAT, p_miss FLOAT, p_foul FLOAT, paint FLOAT, logo VARCHAR(255))")
 
     # cur.execute("INSERT INTO plg_team(team,scores,point2,point3,foulShot,backboards,assists,block,p_miss,p_foul,paint,logo) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
@@ -243,4 +243,14 @@ for i in team_datas:
     
     # print(p_foul,paint,logo)
 
-        
+#cur.execute("CREATE TABLE userInfo(id INT PRIMARY KEY AUTO_INCREMENT, userId VARCHAR(255))")
+# cur.execute("CREATE TABLE memberLike(id INT PRIMARY KEY AUTO_INCREMENT, userId VARCHAR(255), backNumber INT, playerName VARCHAR(255), p_team VARCHAR(255), p_counts INT, p_time VARCHAR(255), point2 VARCHAR(255), point3 VARCHAR(255), p_foulShots VARCHAR(255), p_scores FLOAT, p_backboards FLOAT, p_assists FLOAT, p_intercept FLOAT, p_miss FLOAT, p_foul FLOAT)")
+# con.commit()
+
+################## 近期賽程數據 ################
+cur=con.cursor()
+cur.execute("CREATE TABLE today_game (id INT PRIMARY KEY AUTO_INCREMENT,gameId VARCHAR(255),guestQ1 VARCHAR(255),guestQ2 VARCHAR(255),guestQ3 VARCHAR(255),guestQ4 VARCHAR(255),guestFinal VARCHAR(255),masterQ1 VARCHAR(255),masterQ2 VARCHAR(255),masterQ3 VARCHAR(255),masterQ4 VARCHAR(255),masterFinal VARCHAR(255))")
+cur.execute("CREATE TABLE today_guest_player (id INT PRIMARY KEY AUTO_INCREMENT,gameId VARCHAR(255),backnumber VARCHAR(255),name VARCHAR(255),ontime VARCHAR(255),backboard VARCHAR(255),assist VARCHAR(255),score VARCHAR(255),foul VARCHAR(255),foulshot VARCHAR(255))")
+cur.execute("CREATE TABLE today_master_player (id INT PRIMARY KEY AUTO_INCREMENT,gameId VARCHAR(255),backnumber VARCHAR(255),name VARCHAR(255),ontime VARCHAR(255),backboard VARCHAR(255),assist VARCHAR(255),score VARCHAR(255),foul VARCHAR(255),foulshot VARCHAR(255))")
+
+con.commit()

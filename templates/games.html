@@ -38,43 +38,43 @@
                 </div>
                 <div class="score-board">
                     <div class="gpic">
-                        <img src="/static/images/logo.png">
+                        <img id="gpic" src="/static/images/logo.png">
                     </div>
                     <div class="gcontainer">
                         <div class="gscore">
                             <div class="gmain"><p>主隊</p></div>
-                            <div class="g"><p>97</p></div>
-                            <div class="gteam"><p>富邦勇士</p></div>
+                            <div class="g" id="mfinal"><p>97</p></div>
+                            <div class="gteam" id="mteam"><p>富邦勇士</p></div>
                         </div>
                     </div>
                     <div class="gul">
                         <ul>
-                            <li class="q1-m">12</li><li class="q">-- Q1 -- </li><li class="q1-g">12</li>
+                            <li class="q1-m" id="mQ1">12</li><li class="q">-- Q1 -- </li><li class="q1-g" id="gQ1">12</li>
                         </ul>
                         <ul>
-                            <li class="q1-m">12</li><li class="q">-- Q2 --</li><li class="q1-g">12</li>
+                            <li class="q1-m" id="mQ2">12</li><li class="q">-- Q2 --</li><li class="q1-g" id="gQ2">12</li>
                         </ul>
                         <ul>
-                            <li class="q1-m">12</li><li class="q">-- Q3 --</li><li class="q1-g">12</li>
+                            <li class="q1-m" id="mQ3">12</li><li class="q">-- Q3 --</li><li class="q1-g" id="gQ3">12</li>
                         </ul>
                         <ul>
-                            <li class="q1-m">12</li><li class="q">-- Q4 --</li><li class="q1-g">12</li>
+                            <li class="q1-m" id="mQ4">12</li><li class="q">-- Q4 --</li><li class="q1-g" id="gQ4">12</li>
                         </ul>
                         
                         <ul>
-                            <li class="q1-m">12</li><li class="q">FINAL </li><li class="q1-g">12</li>
+                            <li class="q1-m" id="mQ5">12</li><li class="q">FINAL </li><li class="q1-g" id="gQ5">12</li>
                         </ul><hr>
                         
                     </div>
                     <div class="gcontainer">
                         <div class="gscore">
                             <div class="gmain2"><p>主隊</p></div>
-                            <div class="g2"><p>97</p></div>
-                            <div class="gteam2"><p>富邦勇士</p></div>
+                            <div class="g2" id="gfinal"><p>97</p></div>
+                            <div class="gteam2" id="gteam"><p>富邦勇士</p></div>
                         </div>
                     </div>
-                    <div class="gpic">
-                        <img src="/static/images/logo.png">
+                    <div class="gpic" >
+                        <img id="mpic" src="/static/images/logo.png">
                     </div>
                 </div>
             </div>
@@ -83,11 +83,11 @@
     <section>
         <div class="compare">
             <div class="c-header">
-                <div class="teams">
-                    <p>公牛</p>
+                <div class="teams" id="T1">
+                    <p id="T1name">公牛</p>
                 </div>
-                <div class="teams">
-                    <p>公牛</p>
+                <div class="teams" id="T2">
+                    <p id="T2name">公牛</p>
                 </div>
             </div>
 
@@ -102,8 +102,8 @@
                     <div class="Score"><p>得分</p></div>
                 </div>
             </div>
-           
-            <div class="c-team">
+           <div id="pcontainer">
+            <!-- <div class="c-team">
                 <div class="playerInfo">
                     <div class="backNumber"><p>a</p></div>
                     <div class="playerName"><p>a</p></div>
@@ -127,8 +127,9 @@
                     <div class="assist"><p>12</p></div>
                     <div class="Score"><p>12</p></div>
                 </div>
-            </div>
+            </div></div> -->
         </div>
     </section>
+    <script src="/static/js/todayGame.js"></script>
 </body>
 </html>
