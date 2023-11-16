@@ -2,6 +2,20 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     let userId=localStorage.getItem("userId")
+    let nickname = localStorage.getItem('nickname');
+    let welcomeName=document.querySelector("#welcomeNickname")
+    welcomeName.textContent=nickname
+    if(userId===null){
+        welcomePic.src=""
+        let a=document.createElement("a")
+        a.href="/signin"
+        let linkText = document.createTextNode("Sign in");
+        a.appendChild(linkText);
+        welcomeName.appendChild(a)
+    }
+    
+        
+    
     console.log(userId)
     const selected = document.querySelector("#open");
     const typeNameInput = document.querySelector("#searchBox");
@@ -27,9 +41,23 @@ document.addEventListener("DOMContentLoaded", function () {
         getTeam();
         typeNameInput.value=""
     });
-
-    // 初始化一次
-    choosed_team = selected.value;
+    let teamresult=localStorage.getItem("teamresult")
+    if(teamresult==="臺北富邦勇士"){
+        choosed_team = "臺北富邦勇士";
+    }else if(teamresult==="新北國王"){
+        choosed_team = "新北國王";
+    }else if(teamresult==="新竹街口攻城獅"){
+        choosed_team = "新竹街口攻城獅";
+    }else if(teamresult==="福爾摩沙台新夢想家"){
+        choosed_team = "福爾摩沙台新夢想家";
+     }else if(teamresult==="桃園領航猿"){
+        choosed_team = "桃園領航猿";
+    }else if(teamresult==="高雄17直播鋼鐵人"){
+        choosed_team = "高雄17直播鋼鐵人";
+    }else{
+        choosed_team = selected.value;
+    }
+    
     typeName = typeNameInput.value;
     console.log(choosed_team);
     getTeam();
@@ -324,7 +352,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 userLike.addEventListener("click", () => {
     let userId = localStorage.getItem("userId");
-    if(userId===null){
+    if(userId===null||userId==="undefined"){
         alert("請先登入")
     }else{like()}
     })

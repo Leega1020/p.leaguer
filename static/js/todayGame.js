@@ -1,6 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+   
+
+        let userId=localStorage.getItem("userId")
+        
+        let welcomePic=document.querySelector("#welcomePic")
+       
+        let nickname = localStorage.getItem('nickname');
+        let welcomeName=document.querySelector("#welcomeNickname")
+        if(userId===null||userId==="undefined"){
+        welcomePic.src=""
+        let a=document.createElement("a")
+        a.href="/signin"
+        let linkText = document.createTextNode("Sign in");
+        a.appendChild(linkText);
+        welcomeName.appendChild(a)
+        }else{
+            welcomeName.textContent=nickname
+        }
     let data;  // 提升 data 的声明
 
+   
+    
+
+    
     function updateUI(data) {
         console.log(data);
         let date = document.querySelector("#date");

@@ -19,9 +19,22 @@ let isLogging = false;
     });
 
     document.addEventListener("DOMContentLoaded", function () {    
-     
+        
         let userId=localStorage.getItem("userId")
-    
+        let nickname = localStorage.getItem('nickname');
+        let welcomePic=document.querySelector("#welcomePic")
+        let welcomeName=document.querySelector("#welcomeNickname")
+        
+        if(userId===null||userId==="undefined"){
+        welcomePic.src=""
+        let a=document.createElement("a")
+        a.href="/signin"
+        let linkText = document.createTextNode("Sign in");
+        a.appendChild(linkText);
+        welcomeName.appendChild(a)
+        }else{
+            welcomeName.textContent=nickname
+        }
         fetch("/aa/signin", {
             method: "GET",
             headers: {
@@ -39,6 +52,10 @@ let isLogging = false;
                 
                 isLogging = true;
                 localStorage.setItem("userId", data.userId);
+                localStorage.setItem("nickname", data.nickname);
+                
+                localStorage.setItem("teamresult",data.team)
+                
                 let uu=localStorage.getItem("userId")
                 console.log(uu)
                 if (uu==="undefined"){
@@ -112,12 +129,11 @@ let isLogging = false;
     
         const lineOutBtn = document.querySelector("#lineOutBtn");
         lineOutBtn.addEventListener("click", () => {
-            let token = localStorage.getItem("token");
+            let userId = localStorage.getItem("userId");
             fetch("/api/signout", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
+                    "userId": userId,
                 },
             })
             .then(response => {
@@ -126,7 +142,6 @@ let isLogging = false;
             .then(data => {
                 if (data) {
                     isLogging = false;
-                    localStorage.removeItem("token");
                     localStorage.removeItem("userId");
                 }
             });

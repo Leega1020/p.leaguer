@@ -243,7 +243,7 @@ con = connection_pool.get_connection()
     
     # print(p_foul,paint,logo)
 cur=con.cursor()
-cur.execute("CREATE TABLE userInfo(id INT PRIMARY KEY AUTO_INCREMENT, userId VARCHAR(255), nickname VARCHAR(255), team VARCHAR(255), day1 VARCHAR(255), day2 VARCHAR(255), day3 VARCHAR(255), day4 VARCHAR(255), day5 VARCHAR(255), day6 VARCHAR(255), day7 VARCHAR(255))")
+cur.execute("CREATE TABLE userInfo(id INT PRIMARY KEY AUTO_INCREMENT, userId VARCHAR(255), nickname VARCHAR(255), team VARCHAR(255), day1 VARCHAR(255), day2 VARCHAR(255), day3 VARCHAR(255), day4 VARCHAR(255), day5 VARCHAR(255), day6 VARCHAR(255), day7 VARCHAR(255),lasttime DATETIME)")
 # cur.execute("CREATE TABLE memberLike(id INT PRIMARY KEY AUTO_INCREMENT, userId VARCHAR(255), backNumber INT, playerName VARCHAR(255), p_team VARCHAR(255), p_counts INT, p_time VARCHAR(255), point2 VARCHAR(255), point3 VARCHAR(255), p_foulShots VARCHAR(255), p_scores FLOAT, p_backboards FLOAT, p_assists FLOAT, p_intercept FLOAT, p_miss FLOAT, p_foul FLOAT)")
 # con.commit()
 

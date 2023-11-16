@@ -55,7 +55,7 @@
 }
 .memberBoard {
     width: 1920px;
-    height: 1100px;
+    height: 1200px;
     background-color: #27313b;
     margin: 0 auto;
     overflow: auto; 
@@ -89,6 +89,7 @@
     font-weight: 800;
     color: rgb(39, 39, 39);
 }
+
 .b_P{
     width: 100%;
     height: auto;
@@ -188,30 +189,36 @@
     margin-top: 100px;
 }
 .mainHead{
-    width: 400px;
-    height: 420px;
+    width: 500px;
+    height: 550px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #02182e;
-    background-image: url('/static/images/fubonbg.jpg'); 
-    background-size: cover; 
-    background-position: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    background-image: url('/static/images/badges/bbbbb.png'); 
+    background-size: 600px; 
+    background-position:center;
 }
 .headpic{
     height: 290px;
-    
+    margin-top: 40px;
+}
+#headpicimg{
+    width: 250px;
+    height: auto;
 }
 .username{
-    width: 500px;
-    height: auto;
-    margin-top: -60px;
+    width: 300px;
+    height: 100px;
+    margin-top: -120px;
 }
 .username P{
     margin: 0;
     text-align: center;
+    background-image: linear-gradient(to right, #fffff1, #a8a8a8); /* 起始顏色，結束顏色 */
+    color: transparent;
+    -webkit-background-clip: text; /* 將背景剪裁為文本形狀，適用於WebKit（Chrome、Safari等）瀏覽器 */
+    background-clip: text;
 }
 .perday{
     flex:1;
@@ -228,8 +235,7 @@
     width: 100px;
     height: auto;
     cursor: pointer;
-    
-    
+     
 }
 .perdayP{
     color:rgb(255, 255, 223);
@@ -265,6 +271,26 @@ button {
     border: none; /* Remove border for a cleaner look */
     cursor: pointer;
     display: block; /* Make the button a block element for auto margin to work */
+}
+.ts{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    background-color: #bbbbbb;
+    margin: 0;
+    height: 60px; 
+    font-size: 16px; 
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 20px;
+    font-weight: 800;
+    color: rgb(39, 39, 39);
+    text-align: center;
+    flex: 1;
 }
 footer{
     width: 100%;

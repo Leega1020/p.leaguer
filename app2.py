@@ -17,7 +17,7 @@ app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.secret_key="akksso"
-
+app.permanent_session_lifetime = timedelta(seconds=30)
 SECRET_KEY = config('SECRET_KEY')
 APP_ID = config('APP_ID')
 APP_KEY = config('APP_KEY')
@@ -180,6 +180,7 @@ def line_signin():
         session["refresh_token"]=refresh_token
         #print(refresh_token)
         session["access_token"]=access_token
+        session.permanent = True
         get_user_profile_url = "https://api.line.me/v2/profile"
         headers = {
             'Authorization': f'Bearer {access_token}'
@@ -196,7 +197,7 @@ def line_signin():
             result=cur.fetchone()
             if result:
                 print("founded")
-                return jsonify({"data":"already signuped"})
+                return redirect("/signin")
             else:
                 cur.execute("INSERT INTO userInfo (userId) VALUES (%s)", (userId,))
                 con.commit()
@@ -212,12 +213,13 @@ def getSignin():
 
     if haveuserId is not None:
         userId = haveuserId[0]
-        cur.execute("SELECT nickname FROM userInfo WHERE userId=%s", (userId,))
+        cur.execute("SELECT nickname,team FROM userInfo WHERE userId=%s", (userId,))
         result = cur.fetchone()
 
         if result is not None:
             nickname = result[0]
-            response_data = {"userId": userId, "nickname": nickname}
+            team=result[1]
+            response_data = {"userId": userId, "nickname": nickname,"team":team}
             return jsonify(response_data)
         else:
             # Handle the case where there is no nickname
@@ -258,8 +260,8 @@ def getSignin2():
 
 @app.route("/api/signout", methods=["POST"])
 def logout_line_user():
-    token = request.headers.get('Authorization').split(' ')[1]
-    if token:
+    userId = request.headers.get('userId')
+    if userId:
         access_token = session.get("access_token")
         refresh_token = session.get("refresh_token")
 
@@ -418,59 +420,103 @@ def deleteLike():
 @app.route("/api/signday", methods=["POST"])
 def handleSignday():
     userId = request.headers.get("userId")
+    lastTime = request.json.get("lastTime")
+
     if userId is None:
         return jsonify({"data": "Not Signin"})
     else:
         checkDay = request.json.get("check")
         cur = con.cursor()
-
+        
+        # 創建游標，執行 SQL 查詢
+        cur.execute("SELECT day1 FROM userInfo WHERE userId=%s", (userId,))
+        first = cur.fetchone()
+        if first is not None:
+            first = "not1"
+        else:
+            first = "yes1"
+        
         # 檢查是否已簽到
         cur.execute(f"SELECT {checkDay} FROM userInfo WHERE userId = %s", (userId,))
         result = cur.fetchone()
 
-        if result[0] == "checked":
-            # 如果已簽到，返回相應響應
-            return jsonify({"data": "Already signed today!"})
+        if result is not None and result[0] == "checked":
+            # 如果已經簽到，返回相應的響應
+            return jsonify({"first": first})
         else:
             # 進行簽到操作
             checked = "checked"
-            cur.execute(f"UPDATE userInfo SET {checkDay} = %s WHERE userId = %s", (checked, userId))
-
-            # 在 userInfo 表中新增簽到時間的欄位，命名為 lastSignTime
-            cur.execute("ALTER TABLE userInfo ADD COLUMN IF NOT EXISTS lastSignTime TIMESTAMP")
-            
-            # 取得當前的日期和時間
-            current_time = datetime.now()
-
-            # 更新最後簽到的時間
-            cur.execute("UPDATE userInfo SET lastSignTime = %s WHERE userId = %s", (current_time, userId))
+            formatted_date = datetime.strptime(lastTime, "%Y-%m-%dT%H:%M:%S.%fZ").strftime("%Y-%m-%d %H:%M:%S")
+            cur.execute(f"UPDATE userInfo SET {checkDay} = %s, lasttime = %s WHERE userId = %s", (checked, formatted_date, userId))
 
             con.commit()
+            print(formatted_date)
+            return jsonify({"first": first})
 
-            return jsonify({"data": "Sign-in successful!"})
-
+        
 
     
 @app.route("/api/signday", methods=["GET"])
 def getSignDay():
-    userId=request.headers.get("userId")
+    userId = request.headers.get("userId")
     if userId is None:
-        return jsonify({"data":"Not Signin"})
+        return jsonify({"data": "Not Signin"})
     else:
-        cur=con.cursor()
-        cur.execute("SELECT day1,day2,day3,day4,day5,day6,day7 FROM userInfo WHERE userId=%s",(userId,))
+        cur = con.cursor()
+        cur.execute("SELECT day1, day2, day3, day4, day5, day6, day7 FROM userInfo WHERE userId=%s", (userId,))
         result = cur.fetchone()
+        cur.execute("SELECT lasttime FROM userInfo WHERE userId=%s", (userId,))
+        lasttimes = cur.fetchone()
+        timeok = ""  # 給 timeok 初始值
+        cur.execute("SELECT team FROM userInfo WHERE userId=%s", (userId,))
+        teamresult=cur.fetchone()
+        if teamresult is not None:
+            teamresult = teamresult[0]
+        if lasttimes is not None and len(lasttimes) > 0:
+            lasttime = lasttimes[0]
+            
+            current_time = datetime.now()
 
-        # 檢查是否有 None 值
-        has_none = any(value is None for value in result)
+            if lasttime is not None:
+                time_difference = current_time - lasttime
 
-        if has_none:
-            # 如果有 None 值，返回未簽到的天數
-            count = result.count(None)
-            return jsonify({"data": count})
+                if time_difference > timedelta(seconds=5):
+                    timeok = "timeok"
+                else:
+                    timeok = "timenotok"
+            else:
+                # Handle the case when lasttime is None
+                time_difference = timedelta(days=0)  # Set a default value
+            print(current_time)
+            print(time_difference)
+            print(timedelta(days=1))
+        if result is not None:
+            has_none = any(value is None for value in result)
+            print(timeok)
+            if has_none:
+                # If there are None values, return the count of unsigned days
+                count = 7 - result.count(None)
+                return jsonify({"count": count, "lastTime": timeok,"teamresult":teamresult})
+            else:
+                count = 7
+                return jsonify({"count": count, "lastTime": timeok,"teamresult":teamresult})
         else:
-            # 如果沒有 None 值，返回 0 表示全部都簽到
-            return jsonify({"data": 0})
+            # Handle the case when result is None (no data found)
+            print("No data found for user")
+            
+            return jsonify({"count": 0, "lastTime": timeok,"teamresult":teamresult})
+@app.route("/api/updateTeam", methods=["POST"])
+def updateTeam():
+    userId=request.headers.get("userId")
+    changeTeam=request.json.get("changeTeam")
+    print(changeTeam)
+    if userId is not None:
+        cur=con.cursor()
+        cur.execute("UPDATE userInfo SET team=%s WHERE userId=%s",(changeTeam,userId))
+        con.commit()
+        print("okchangeTeam")
+        return jsonify({"changeTeam":changeTeam})
+ 
 # Pages
 @app.route("/")
 def index():
