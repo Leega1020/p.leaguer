@@ -191,9 +191,9 @@ def get_playerList():
         response = Response(json_data, content_type="application/json")
         return response
 
-CHANNEL_ID = '2001585939'
-CHANNEL_SECRET = '13668f7f86fa59cd538a1455374f914c'
-REDIRECT_URI = 'http://127.0.0.1:5000/get/signin'
+CHANNEL_ID = ''
+CHANNEL_SECRET = ''
+REDIRECT_URI = ''
 
 @app.route('/get/signin', methods=['GET'])
 def line_signin():
