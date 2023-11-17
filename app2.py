@@ -350,10 +350,10 @@ def getLikePlayer():
 @app.route("/api/getTodayGame")
 def getTodayGame():
     cur = con.cursor()
-    cur.execute("SELECT * FROM today_game")
+    cur.execute("SELECT * FROM today_game ORDER BY id DESC LIMIT 1")
     result = cur.fetchone()
     gameId = result[1]
-    
+    print(gameId)
     # 賽程（主客隊、日期）
     cur.execute("SELECT * FROM regular_season24 WHERE gameId=%s", (gameId,))
     gameInfo = cur.fetchall()

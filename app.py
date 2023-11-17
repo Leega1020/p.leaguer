@@ -318,9 +318,10 @@ def getFavouritePlayer():
 def goOverGame():
 
     passed_tab = root.find("a", id="is-passed-tab")
-
+    
     completed_matches_text = passed_tab.get_text()
     text_parts = completed_matches_text.split('(')
+    
     if len(text_parts) >= 1:
         completed_matches_text = text_parts[0]
     print(completed_matches_text)
@@ -501,7 +502,7 @@ def goOverGameDetails():
                 driver.quit()
             else:print("Not Start")
                         #print(guestQ1)
-def Gamed():
+def getId():
     from selenium import webdriver
     from selenium.webdriver.common.by import By
 
@@ -519,12 +520,21 @@ def Gamed():
     import time
     time.sleep(1)
 
- 
-    match_id = driver.find_element(By.CSS_SELECTOR, ".fs14.mb-2").text
-    #print("比赛ID:", match_id)
+    pass_count_element = driver.find_element(By.CLASS_NAME, "pass-count")
+    pass_count_text = pass_count_element.text
+    print(pass_count_text)
+
+    match_id = driver.find_elements(By.CSS_SELECTOR, ".fs14.mb-2")
+    if len(match_id) >= 2:
+    # Access and print the text of the second element (index 1)
+        second_element_text = match_id[int(pass_count_text)-1].text
+        print(second_element_text)
 
     # 关闭浏览器
     driver.quit()
+    return second_element_text
+def Gamed():
+    match_id=getId()
     cur=con.cursor()
     cur.execute("SELECT gameNumber FROM regular_season24 WHERE gameId=%s",(match_id,))
     result=cur.fetchone()[0]
