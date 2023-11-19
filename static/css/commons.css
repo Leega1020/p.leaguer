@@ -338,13 +338,13 @@ li{
     flex:1
     
 }
-.teams p{
+/*.teams p{
     color: rgb(255, 255, 255);
     font-family: Noto Sans TC;
     font-size: 26px;
     font-style:normal;
     font-weight: 500;
-}
+}*/
 .c-team{
     display: flex;
     height: auto;
