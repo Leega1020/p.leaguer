@@ -47,14 +47,14 @@
     margin-top: 30px;
 }
 .memberBoard2{
-    width: 1920px;
+    width: 1200px;
     height: 500px;
     margin: 0 auto;
     overflow: auto; 
     margin-top: 40px;
 }
 .memberBoard {
-    width: 1920px;
+    width: 1200px;
     height: 1200px;
     background-color: #27313b;
     margin: 0 auto;
@@ -63,7 +63,7 @@
 }
 
 .boardTitle{
-    width: calc(100% - 800px);
+    width: calc(100% - 200px);
     height: 270px;
     background-color: white;
     margin: 80px auto 0 !important;
