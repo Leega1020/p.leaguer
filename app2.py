@@ -16,7 +16,7 @@ import uuid
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.secret_key="akksso"
+
 app.permanent_session_lifetime = timedelta(seconds=30)
 SECRET_KEY = config('SECRET_KEY')
 APP_ID = config('APP_ID')
