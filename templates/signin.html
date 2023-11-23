@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLG</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/signin.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css">
+</head>
+<body class="signBody">
+    <nav>
+        <div class="navbar">
+            <div class="nav-logo">
+                <img src="/static/images/bn_pleague-360x360-1.png">
+            </div>
+            <ul class="nav-item">
+                <li class="text">近期賽事</li><p style="color: white;">|</p>
+                <li class="text">球員數據</li><p style="color: white;">|</p>
+                <li class="text">球隊數據</li><p style="color: white;">|</p>
+            </ul>
+            <div class="sign">
+                <div class="signature"><img id="welcomePic" src="/static/images/logo.png"></div>
+                <div class="signout text"><p id="welcomeNickname">Hi,LEEGA</p></div>
+            </div>
+        </div>
+    </nav>
+    <header class="headboard">
+        <div class="headContainer">
+            <div class="a1"><img src="/static/images/bar2.png"><div class="a2"><img src="/static/images/flaming2.png"></div></div>
+            <p class="text4">PLG FANS CLUB</p>
+        </div> 
+    </header>
+    <section>
+        <div class="signinContainer" >
+          
+            <div class="sign_main" style="border-right: 1.5px solid black ;padding-right: 40px;">
+                
+                    <p class="text6">SIGN IN</p>
+                    <form id="signinForm">
+              
+                        <div class="sign_input" style="height: 20px;">
+                            <p>登入會員帳號</p>
+                        </div>
+                        <button class="signBtn">Sign in</button>
+                    </form>
+                
+                <div class="toSignup">
+                    
+                    <p>Don’t have a ID?<span id="signupLink">點此註冊</span></p>
+                </div>
+            </div>  
+           
+            <div class="sign_main" style="margin-left: 20px;">
+                <p class="text6">SIGN IN</p>
+                <p>登入獲得更多消息，賽事提醒...</p>
+            </div>
+                
+           
+        </div>
+    
+    
+        <div class="signupContainer">
+      
+           
+            <div class="sign_main" >
+                <div class="close_up" >
+                    <img src="/static/images/close.png"></div>
+                    <!-- <div class="sign_title">
+                        <p>SIGN UP</p>
+                    </div>-->
+                <p class="text6">SIGN UP</p>
+               
+                <form id="signupForm" style="margin-top: 20px;">
+                    <p style="margin: 0;" class="ssssss">輸入粉絲暱稱</p>
+                <div class="sign_input">
+                    
+                    <input type="text" id="signUpName">
+                </div>
+                <p style="margin: 0; "  class="ssssss">選擇隊伍</p>
+                <div class="sign_input">
+                   
+                    <input type="email" id="signUpTeam">
+                </div>
+                <button class="signupBtn">註冊新帳戶</button></form>
+               
+                <div class="toSignin">
+                    <p>已經有帳戶了？<span id="toSignin">點此登入</span></p>
+                </div>
+            </div>  
+        </div>
+    </section>
+    <footer></footer>
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+    
+    <script src="/static/js/newsign.js"></script>
+    <script src="/static/js/common.js"></script>
+</body>
+</html>

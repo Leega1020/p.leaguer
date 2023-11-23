@@ -19,7 +19,15 @@
     font-style:normal;
     font-weight: 400;
 }
-
+.signout a{
+    color: white;
+    text-decoration: none;
+    font-family: Noto Sans TC;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    margin-right: 20px;
+}
 
 body{
     margin: 0;
@@ -330,13 +338,13 @@ li{
     flex:1
     
 }
-.teams p{
+/*.teams p{
     color: rgb(255, 255, 255);
     font-family: Noto Sans TC;
     font-size: 26px;
     font-style:normal;
     font-weight: 500;
-}
+}*/
 .c-team{
     display: flex;
     height: auto;
