@@ -530,6 +530,7 @@ def signin():
 @app.route("/game")
 def todayGame():
 	return render_template("games.html") 
+
 @app.route("/member")
 def member():
 	return render_template("member.html") 
@@ -537,3 +538,4 @@ def member():
 def linesign():
 	return render_template("line.html") 
 app.run(host='0.0.0.0', port=5000)
+
