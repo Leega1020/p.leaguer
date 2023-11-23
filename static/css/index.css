@@ -110,69 +110,71 @@
 }
 .headCintainer{
     position: absolute;
-    width: 500px;
-    height: 60px;
-    right: 0;
+    width: 450px;
+    height: 100px;
+    right: 100px;
     bottom:20px;
     display: flex;
 }
 .welcome{
-    width: 300px;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    
+   flex:2
 }
 .welcome img{
+    
     width: 300px;
     height: auto;
 }
 .welcome p{
     margin: 0;
     padding: 0;
-    margin-left: auto;
-    margin-top: 3px;
+    text-align: end;
 }
 .w2{
-    width: auto;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
+    margin-left: 10px;
+    position: relative;
+    flex:1
     
 }
 .w2 img{
-    width: 60px;
+    width: 80px;
     height: auto;
-    margin-bottom: 0;
+    margin-top: -30px;
+}
+#c{
+    color:#eaeaea;
+    position: absolute;
+    top:5px;
+    width: 50px;
+    left: 18px;
+    word-wrap: break-word; 
 }
 /* ---------------- < main > ------------------ */
 .mainBody{
    padding-top: 40px;
    gap:30px;
     background-color: antiquewhite;
-    width: 1920px;
+    width: 1200px;
     height: auto;
     margin: 0 auto;
     display: flex
     
 }
 .titleContainer{
-    flex: 2;
+    flex: 1.5;
     height: 100%;
     margin: 0 auto;
     border-radius: 20px;
 }
 .player{
     flex: 1;
-    height: 800px;
+    height: 100%;
     margin: 0 30px 0 0;
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
 }
 .lastgame{
     height: 400px;
-    width: calc(100% - 30px);
+    width: auto;
     margin-left: 30px;
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
@@ -185,6 +187,7 @@
     display: flex;
     align-items: center;
     height: 100px;
+    width: 100%;
 }
 .LG-p1 p{
     margin-left: 20px;
@@ -195,23 +198,29 @@
     margin-left: 20px;
 }
 .teamboard{
-    height: 370px;
-    margin-top: 30px;
-    width: calc(100% - 30px);
+   
+    width: auto;
     margin-left: 30px;
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
     overflow: hidden;
+    height: 370px;
+    margin-top: 30px;
+ 
+    margin-left: 30px;
+  
+   
+  margin-bottom: 30px;
 }
-hr{
+/*hr{
     width: calc(100% - 40px);
-}
+}*/
 .hbg {
     display: flex;
     align-items: center;
     justify-content: center; 
     height: 250px;
-    width: calc(100% - 40px);
+   
     margin: 0 20px;
     background-color: aqua;
     position: relative;
@@ -239,42 +248,50 @@ hr{
     opacity: 1;
 }
 .teams{
-    width: calc(100% - 40px);
+    overflow-x: auto;
+    width:100%;
     margin: 0 20px;
-    height:245px;
+    height:auto;
     display: flex;
-
+    margin-bottom: 50px;
 }
 .perteam{
-    width: 300px;
+    
     height: 100%;
     border-right: 2px solid  rgba(155, 155, 155, 0.1);
-    
+ 
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 1;
 }
 .teamlogo{
     display: flex;
+    width: 100px;
+    height: 100px;
     align-items: center;
     justify-content: center;
     margin-top: 15px;
 }
 .teamlogo img{
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 100%;
 }
 .teamP{
+    
     margin-top: 5px;
 }
 .teamP p{
     margin: 0 20px;
 }
 .perteam_end{
-    width: 300px;
+    
     height: 100%;
     background-color:#f6f6f6;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    flex: 1;
 }
 
 .perteam_end a{
@@ -290,25 +307,30 @@ hr{
   }
 
 .player-title{
-    width: calc(100% - 80px);
-    height: 80px;
+    padding: 10px;
+    height: 50px;
     margin: 0 auto;
     background-color:#27313c ;
     display: flex;
     justify-content: center;
-
+    align-items: center;
 }
 .player-title li{
-    width: 100px;
+    line-height: 3;
+    flex:0.5
+    
 }
 .player-title li:nth-child(2){
-    width: 5px;
+    flex:0.01
 }
 .player-title li:nth-child(4){
-    width: 5px;
+    flex:0.01
 }
 .player-title li:nth-child(1){
-    margin-left: -40px;
+    width: 100px;
+    flex:0.2
+    
+  
 }
 .player hr{
     opacity: 0.3;
@@ -323,6 +345,7 @@ hr{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 30px;
 }
 .end p{
     margin: 0;
@@ -331,14 +354,27 @@ hr{
     width: 12px;
     height: 12px;
 }
+.text888{
+    color: rgb(0, 0, 0);
+    font-family: Noto Sans TC;
+    font-size: 10px;
+    font-style:normal;
+    font-weight: 500;
+}
 
 /* 在您的CSS样式文件中定义一个类来更改表头单元格颜色 */
 
 
 /* ---------------- < footer > ------------------ */
-footer{
+footer {
+    bottom: 0;
     width: 100%;
-    height: 300px;
-    margin-top: 120px;
+    height:300px; /* 或者使用其他你想要的高度 */
     background-color: black;
+    margin-top: 120px;
 }
+
+@media screen and (min-width: 830px) and (max-width: 1200px){ 
+    .mainBody {
+        width: 100%;
+    }}

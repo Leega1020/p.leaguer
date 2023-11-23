@@ -154,3 +154,15 @@ todaygame-master
 .score
 .foul
 .foulshot
+
+------會員系統表
+.userId 
+.nickName 
+.team
+.day1
+.day2
+.day3
+.day4
+.day5
+.day6
+.day7

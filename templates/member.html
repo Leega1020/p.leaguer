@@ -9,8 +9,7 @@
 </head>
 </head>
 </head>
-<body>
-    /*會員頭像 頭像選擇 簽到 登出*/
+<body class="memberBody">
     <nav>
         <div class="navbar">
             <div class="nav-logo">
@@ -22,8 +21,8 @@
                 <li class="text">球隊數據</li><p style="color: white;">|</p>
             </ul>
             <div class="sign">
-                <div class="signature"><img src="/static/images/logo.png"></div>
-                <div class="signout text"><p>Hi,LEEGA</p></div>
+                <div class="signature"><img id="welcomePic" src=""></div>
+                <div class="signout text" id="welcomeNickname"><p></p></div>
             </div>
         </div>
     </nav>
@@ -33,8 +32,8 @@
             <p class="text4">PLG FANS CLUB</p>
         </div> 
     </header>
-    <section class="memberContainer">
-        <div class="memberBoard">
+    <section class="memberContainer1">
+        <div class="memberBoard2">
             <div class="boardTitle">
                 <div class="b_P"><p>SIGN BOARD</p></div>
                 <ul class="dayul">
@@ -47,29 +46,50 @@
                     <li>DAY7</li>
                 </ul>
                 <ul class="picul">
-                    <li style="opacity: 100%;"><img src="/static/images/bn_pleague-360x360-1.png"></li>
-                    <li style="opacity: 100%;"><img src="/static/images/bn_pleague-360x360-1.png"></li>
+                    <li style="opacity: 50%;"><img src="/static/images/bn_pleague-360x360-1.png"></li>
+                    <li style="opacity: 30%;"><img src="/static/images/bn_pleague-360x360-1.png"></li>
                     <li style="opacity: 30%;"><img src="/static/images/bn_pleague-360x360-1.png"></li>
                     <li style="opacity: 30%;"><img src="/static/images/bn_pleague-360x360-1.png"></li>
                     <li style="opacity: 30%;"><img src="/static/images/bn_pleague-360x360-1.png"></li>
                     <li style="opacity: 30%;"><img src="/static/images/bn_pleague-360x360-1.png"></li>
                     <li style="opacity: 30%;"><img src="/static/images/bn_pleague-360x360-1.png"></li>
                 </ul>
-              
             </div>
-            
+            <div class="titleBtn">
+                <button style="letter-spacing: 0;">HELP</button>
+                <button class="text4" style="letter-spacing: 0;">
+                    <select class="ts" style="letter-spacing: 0;" id="ts">
+                        <option value="CHANGE TEAM">CHANGE TEAM</option>
+                        <option value="臺北富邦勇士">臺北富邦勇士</option>
+                        <option value="新北國王">新北國王</option>
+                        <option value="新竹街口攻城獅">新竹街口攻城獅</option>
+                        <option value="福爾摩沙台新夢想家">福爾摩沙台新夢想家</option>
+                        <option value="桃園領航猿">桃園領航猿</option>
+                        <option value="高雄17直播鋼鐵人">高雄17直播鋼鐵人</option>
+                        
+                    </select>
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="memberContainer">
+        
+        <div class="memberBoard">
+            <div class="b_P2" style="color: white;"><p>HONORARY MEDAL</p></div>
             <div class="hhContainer">
                 <div class="mainHead">
+                   
                     <div class="headpic">
-                        <img src="/static/images/logo.png">
+                        <img id="headpicimg" src="/static/images/logo.png">
                     </div>
-                    <div class="username"><p class="text4" style="color: white;">LEE</p></div>
+                    <div class="username"><p id="username" class="text4" style="font-size: 70px;">LadadsfsdfddfaEE</p></div>
                 </div>
 
                 <div class="daypic">
                     <div class="perday">
                         <div class="perdaypic">
-                            <img src="/static/images/logo_6_1632713555.png">
+                            <img id="dt1" src="/static/images/logo_6_1632713555.png">
                         </div>
                         <div class="perdayP">
                             <p>DAY1</p>
@@ -79,7 +99,7 @@
 
                     <div class="perday">
                         <div class="perdaypic">
-                            <img src="/static/images/t1.png">
+                            <img id="dt2" src="/static/images/t1.png">
                         </div>
                         <div class="perdayP">
                             <p>DAY4</p>
@@ -89,7 +109,7 @@
 
                     <div class="perday">
                         <div class="perdaypic">
-                            <img src="/static/images/t2.jpg">
+                            <img id="dt3" src="/static/images/t2.jpg">
                         </div>
                         <div class="perdayP">
                             <p>DAY7</p>
@@ -100,8 +120,10 @@
             </div>
         </div>
     </section>
-
-    <button>LOG OUT</button>
+    <button id="lineOutBtn">LINE 登出</button>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+    <script src="/static/js/member.js"></script>
+    <script src="/static/js/common.js"></script>
     <footer></footer>
 </body>
 </html>
