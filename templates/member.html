@@ -12,17 +12,17 @@
 <body class="memberBody">
     <nav>
         <div class="navbar">
-            <div class="nav-logo">
-                <img src="/static/images/bn_pleague-360x360-1.png">
+            <div class="nav-logo" style="flex:0.1">
+                <img id="logocursor" src="/static/images/bn_pleague-360x360-1.png">
             </div>
             <ul class="nav-item">
-                <li class="text">近期賽事</li><p style="color: white;">|</p>
-                <li class="text">球員數據</li><p style="color: white;">|</p>
-                <li class="text">球隊數據</li><p style="color: white;">|</p>
+                <li ><a class="text" href="/game">近期賽事</a></li><p style="color: white;">|</p>
+                <li><a class="text" href="/player">球員數據</a></li><p style="color: white;">|</p>
+                <li><a class="text" href="/team">球隊數據</a></li><p style="color: white;">|</p>
             </ul>
-            <div class="sign">
+            <div class="sign" style="margin-left: auto;margin-right: 40px;">
                 <div class="signature"><img id="welcomePic" src=""></div>
-                <div class="signout text" id="welcomeNickname"><p></p></div>
+                <div class="signout text" style="text-align: center;"><p id="welcomeNickname"></p></div>
             </div>
         </div>
     </nav>
@@ -56,7 +56,7 @@
                 </ul>
             </div>
             <div class="titleBtn">
-                <button style="letter-spacing: 0;">HELP</button>
+                <button id="helpbtn" style="letter-spacing: 0;">HELP</button>
                 <button class="text4" style="letter-spacing: 0;">
                     <select class="ts" style="letter-spacing: 0;" id="ts">
                         <option value="CHANGE TEAM">CHANGE TEAM</option>
@@ -70,8 +70,14 @@
                     </select>
                 </button>
             </div>
+
+          
+        </div>
+        <div class="dialogue" style="display: none;">
+            <p>*連續簽到解鎖獎勵徽章</p>
         </div>
     </section>
+  
     
     <section class="memberContainer">
         
@@ -83,7 +89,7 @@
                     <div class="headpic">
                         <img id="headpicimg" src="/static/images/logo.png">
                     </div>
-                    <div class="username"><p id="username" class="text4" style="font-size: 70px;">LadadsfsdfddfaEE</p></div>
+                    <div class="username"><p id="username" class="text4" style="font-size: 30px;margin-top: 20px;padding: 0;"></p></div>
                 </div>
 
                 <div class="daypic">

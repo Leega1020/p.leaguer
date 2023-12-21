@@ -12,17 +12,17 @@
 <body>
     <nav>
         <div class="navbar">
-            <div class="nav-logo">
-                <img src="/static/images/bn_pleague-360x360-1.png">
+            <div class="nav-logo" style="flex:0.1">
+                <img id="logocursor" src="/static/images/bn_pleague-360x360-1.png">
             </div>
             <ul class="nav-item">
-                <li class="text">近期賽事</li><p style="color: white;">|</p>
-                <li class="text">球員數據</li><p style="color: white;">|</p>
-                <li class="text">球隊數據</li><p style="color: white;">|</p>
+                <li ><a class="text" href="/game">近期賽事</a></li><p style="color: white;">|</p>
+                <li><a class="text" href="/player">球員數據</a></li><p style="color: white;">|</p>
+                <li><a class="text" href="/team">球隊數據</a></li><p style="color: white;">|</p>
             </ul>
-            <div class="sign">
+            <div class="sign" style="margin-left: auto;margin-right: 40px;">
                 <div class="signature"><img id="welcomePic" src=""></div>
-                <div class="signout text" id="welcomeNickname"><p></p></div>
+                <div class="signout text" style="text-align: center;"><p id="welcomeNickname"></p></div>
             </div>
         </div>
     </nav>
@@ -37,10 +37,11 @@
                     <p class="gg">2023-24 P.LEAGUER+例行賽</p>
                 </div>
                 <div class="score-board">
-                    <div class="gpic">
-                        <img id="gpic" src="/static/images/logo.png">
-                    </div>
+                    
                     <div class="gcontainer">
+                        <div class="gpic">
+                            <img id="gpic" src="/static/images/logo.png">
+                        </div>
                         <div class="gscore">
                             <div class="gmain"><p>主隊</p></div>
                             <div class="g" id="mfinal"><p>97</p></div>
@@ -48,22 +49,22 @@
                         </div>
                     </div>
                     <div class="gul">
-                        <ul>
+                        <ul style="padding: 0;">
                             <li class="q1-m" id="mQ1">12</li><li class="q">-- Q1 -- </li><li class="q1-g" id="gQ1">12</li>
                         </ul>
-                        <ul>
+                        <ul style="padding: 0;">
                             <li class="q1-m" id="mQ2">12</li><li class="q">-- Q2 --</li><li class="q1-g" id="gQ2">12</li>
                         </ul>
-                        <ul>
+                        <ul style="padding: 0;">
                             <li class="q1-m" id="mQ3">12</li><li class="q">-- Q3 --</li><li class="q1-g" id="gQ3">12</li>
                         </ul>
-                        <ul>
+                        <ul style="padding: 0;">
                             <li class="q1-m" id="mQ4">12</li><li class="q">-- Q4 --</li><li class="q1-g" id="gQ4">12</li>
                         </ul>
                         
-                        <ul>
+                        <ul style="padding: 0;">
                             <li class="q1-m" id="mQ5">12</li><li class="q">FINAL </li><li class="q1-g" id="gQ5">12</li>
-                        </ul><hr>
+                        </ul><hr style="width: 100%;margin-top: -50px;">
                         
                     </div>
                     <div class="gcontainer">
@@ -71,17 +72,21 @@
                             <div class="gmain2"><p>主隊</p></div>
                             <div class="g2" id="gfinal"><p>97</p></div>
                             <div class="gteam2" id="gteam"><p>富邦勇士</p></div>
+                           
+                        </div>
+                        <div class="gpic" >
+                            <img id="mpic" src="/static/images/logo.png">
                         </div>
                     </div>
-                    <div class="gpic" >
-                        <img id="mpic" src="/static/images/logo.png">
-                    </div>
+                    
                 </div>
             </div>
         </div>
     </section>
     <section>
+        <div><p class="scorebbb">  SCORE </p></div>
         <div class="compare">
+            <div class="tpanel">
             <div class="c-header">
                 <div class="teams" id="T1">
                     <p id="T1name">公牛</p>
@@ -103,7 +108,7 @@
                 </div>
             </div>
            <div id="pcontainer">
-            <!-- <div class="c-team">
+            <div class="c-team">
                 <div class="playerInfo">
                     <div class="backNumber"><p>a</p></div>
                     <div class="playerName"><p>a</p></div>
@@ -127,11 +132,43 @@
                     <div class="assist"><p>12</p></div>
                     <div class="Score"><p>12</p></div>
                 </div>
-            </div></div> -->
+            </div></div></div>
         </div>
     </section>
+    
+    <div class="scorebbb2" style="background-color: white;"><p>  裁判邦邦忙 </p></div>
+    <div style="display: flex;width: 230px;;margin: 0 auto;margin-top: 30px;">
+        <div style="width: 100%;height: 50px ;display: flex;align-items: center;"><button id="desbtn" class="bonbtn">說明欄</button></div>
+        <div style="width: 100%;display: flex;align-items: center;"><button class="bonbtn" id="bonbonbtn">邦邦忙</button></div>
+    </div>
+
+    <div class="description" style="display: none;">
+        <p style="padding-top: 10px;font-size: 10px;font-weight: 500;">邦忙率:<span style="font-style: italic;">『對方罰球次數/我方犯規次數』</span>的比例</p>
+        <p style="padding-top: 10px;">＊根據統計數據，一鍵試算裁判判斷概率</p>
+        <p style="padding-top:5px;font-style: italic;">判斷率較低：表示裁判對該球隊的犯規採取較<span style="font-weight: 600;">嚴格</span>的標準 </p>
+        <p style="font-style: italic;">判斷率較高：表示裁判對該球隊的犯規採取較<span style="font-weight: 600;">寬鬆</span>的標準 </p>
+        
+    </div>
+
+
+    <section class="bonbon">
+        
+        <div class="bonContainer" style="display: none;">
+            <div class="bonteam">
+                <img id="btpic_m" src="/static/images/king.png">
+                <p>邦忙率≈<span id="bonpersent_m">2.02</span></p>
+            </div>
+            <div class="bonteam">
+                <img id="btpic_g" src="/static/images/king.png">
+                <p>邦忙率≈<span id="bonpersent_g">2.02</span></p>
+            </div>
+            
+        </div>
+    </section>
+    <footer></footer>
     <script src="/static/js/common.js"></script>
     <script src="/static/js/todayGame.js"></script>
+ 
     
 </body>
 </html>

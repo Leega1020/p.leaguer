@@ -4,7 +4,7 @@ let isLogging = false;
     let signinContainer = document.querySelector(".signinContainer");
 
     $('.signBtn').on('click', function(e) {
-        let client_id = '2001585939';
+        let client_id = '2001729138';
         let redirect_uri = 'http://127.0.0.1:5000/get/signin';
         let link = 'https://access.line.me/oauth2/v2.1/authorize?';
         link += 'response_type=code';
@@ -49,7 +49,7 @@ let isLogging = false;
         })
         .then(data => { 
             if (data) {
-                
+                localStorage.setItem("hasReloaded", "false");
                 isLogging = true;
                 localStorage.setItem("userId", data.userId);
                 localStorage.setItem("nickname", data.nickname);
@@ -57,6 +57,7 @@ let isLogging = false;
                 localStorage.setItem("teamresult",data.team)
                 
                 let uu=localStorage.getItem("userId")
+                if(uu){
                 console.log(uu)
                 if (uu==="undefined"){
                     uu=null
@@ -69,7 +70,6 @@ let isLogging = false;
                         signinContainer.style.display = "none";
                         signupContainer.style.display = "flex";
                     } else if (uu == null && data.nickname == null) {
-                        // 未登录
                         signinContainer.style.display = "flex";
                         signupContainer.style.display = "none";
                     }
@@ -82,10 +82,12 @@ let isLogging = false;
                         signinContainer.style.display = "none";
                         signupContainer.style.display = "flex";
                     } else if (uu == null && data.nickname == null) {
-                        // 未登录
                         signinContainer.style.display = "flex";
                         signupContainer.style.display = "none";
                     }
+                }}else{
+                    signinContainer.style.display = "flex";
+                    signupContainer.style.display = "none";
                 }
                 
                 
@@ -127,26 +129,6 @@ let isLogging = false;
             });
         });
     
-        const lineOutBtn = document.querySelector("#lineOutBtn");
-        lineOutBtn.addEventListener("click", () => {
-            let userId = localStorage.getItem("userId");
-            fetch("/api/signout", {
-                method: "POST",
-                headers: {
-                    "userId": userId,
-                },
-            })
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                if (data) {
-                    isLogging = false;
-                    localStorage.removeItem("userId");
-                }
-            });
-        });
-
         let signupLink=document.getElementById("signupLink")
         signupLink.addEventListener("click",()=>{
             signupContainer.style.display="flex"

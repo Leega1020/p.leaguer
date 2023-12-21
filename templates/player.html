@@ -10,17 +10,17 @@
 <body>
     <nav>
         <div class="navbar">
-            <div class="nav-logo">
-                <img src="/static/images/bn_pleague-360x360-1.png">
+            <div class="nav-logo" style="flex:0.1">
+                <img id="logocursor" src="/static/images/bn_pleague-360x360-1.png">
             </div>
             <ul class="nav-item">
-                <li class="text">近期賽事</li><p style="color: white;">|</p>
-                <li class="text">球員數據</li><p style="color: white;">|</p>
-                <li class="text">球隊數據</li><p style="color: white;">|</p>
+                <li ><a class="text" href="/game">近期賽事</a></li><p style="color: white;">|</p>
+                <li><a class="text" href="/player">球員數據</a></li><p style="color: white;">|</p>
+                <li><a class="text" href="/team">球隊數據</a></li><p style="color: white;">|</p>
             </ul>
-            <div class="sign">
-                <div class="signature"><img id="welcomePic" src="/static/images/logo.png"></div>
-                <div class="signout text"><p id="welcomeNickname">Hi,LEEGA</p></div>
+            <div class="sign" style="margin-left: auto;margin-right: 40px;">
+                <div class="signature"><img id="welcomePic" src=""></div>
+                <div class="signout text" style="text-align: center;"><p id="welcomeNickname"></p></div>
             </div>
         </div>
     </nav>
@@ -47,8 +47,8 @@
                 </div>
                 <div class="select">
                     <p class="p1 text4">球員</p>
-                    <p class="text4" style="margin-left: 10px; font-size: 20px; margin-top: 15px; font-weight: 300;">|</p>
-                    <select id="open2" class="p2 text4" style="margin-top: 0px;">
+                    <p class="text4" style="margin-left: 15px; font-size: 20px; margin-top: 15px; font-weight: 300;">|</p>
+                    <select id="open2" class="p2 text4" style="margin-top: 0px;background-position: 75%;">
                         
                        
                     </select>
@@ -94,15 +94,16 @@
                 </thead>
                 <thead class="p_list">
                     <tr class="list_tltle">
+                        
                         <th>追蹤</th>
                         <th>背號</th>
                         <th>球員</th>
                         <th>球隊</th>
-                        <th>上場次數</th>
-                        <th>上場時間</th>
-                        <th>兩分命中率</th>
-                        <th>三分命中率</th>
-                        <th>罰球命中率</th>
+                        <th>次數</th>
+                        <th>時間</th>
+                        <th>兩分％</th>
+                        <th>三分％</th>
+                        <th>罰球％</th>
                         <th>得分</th>
                         <th>籃板</th>
                         <th>助攻</th>
@@ -113,40 +114,7 @@
                 </thead>
 
                 <tbody id="mytbody">
-                    <tr class="list_tltle2">
-                        <th><img class="myimg" src="/static/images/star (1).png"></th>
-                        <th>7</th>
-                        <th>林書豪</th>
-                        <th>富邦勇士</th>
-                        <th>10:20</th>
-                        <th>10:20</th>
-                        <th>42%</th>
-                        <th>42</th>
-                        <th>42</th>
-                        <th>80.67%</th>
-                        <th>12.3</th>
-                        <th>12</th>
-                        <th>12</th>
-                        <th>12</th>
-                        <th>12</th>
-                    </tr>
-                    <tr class="list_tltle2">
-                        <th><img class="myimg" src="/static/images/star (1).png"></th>
-                        <th >7</th>
-                        <th >林書豪</th>
-                        <th class="teamcolor">富邦勇士</th>
-                        <th>10:20</th>
-                        <th>10:20</th>
-                        <th>42%</th>
-                        <th>42</th>
-                        <th>42</th>
-                        <th>80.67%</th>
-                        <th>12.3</th>
-                        <th>12</th>
-                        <th>12</th>
-                        <th>12</th>
-                        <th>12</th>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>

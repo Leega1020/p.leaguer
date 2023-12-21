@@ -1,11 +1,26 @@
 
-    
-  
+let welcomeName=document.querySelector("#welcomeNickname")
+let userId=localStorage.getItem("userId")
+let welcomePic=document.querySelector("#welcomePic")
+let c=document.querySelector("#c")
+let nickname=localStorage.getItem("nickname")
 
-    
+    if(userId===null||userId==="undefined"){
+    welcomePic.src=""
+    let a=document.createElement("a")
+    a.href="/signin"
+    let linkText = document.createTextNode("Sign in");
+    a.appendChild(linkText);
+    welcomeName.appendChild(a)
+    }else{
+        let signout=document.querySelector(".signout")
+        let wa = document.createElement("a");
+        wa.href = "/member";
+        wa.textContent = nickname; 
+        signout.appendChild(wa)
+    }
+
     handleWelcomePic()
-
-    
 
     function handleWelcomePic(){
         let teamresult=localStorage.getItem("teamresult")
@@ -25,5 +40,7 @@
             welcomePic.src="/static/images/kauo.png"
         }
     }
-
-
+let logocursor=document.querySelector("#logocursor")
+logocursor.addEventListener("click",()=>{
+    window.location.href = "/";
+})

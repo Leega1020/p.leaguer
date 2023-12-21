@@ -83,6 +83,10 @@
     overflow: hidden;
     flex:1
 }
+.sign_main img{
+    width: 100px;
+    height: auto;
+}
 .sign_title{
     
     width: 100%;
@@ -95,12 +99,11 @@
 .sign_title p{
     color: var(--secondary-color-gray-70, #666);
     text-align: center;
-    /* Header 3 - Blod 24(24) */
     font-family: Noto Sans TC;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
-    line-height: 24px; /* 100% */
+    line-height: 24px; 
 }
 .ssssss{
     color:#6f6f6f;
@@ -173,7 +176,6 @@ input[type="password"]{
     color: var(--additional-color-white, #FFF);
     text-align: center;
     line-height: 47px; 
-    /* Button - Reg 19(16) */
     font-family: Noto Sans TC;
     font-size: 19px;
     font-style: normal;
@@ -190,7 +192,6 @@ input[type="password"]{
     color: var(--additional-color-white, #FFF);
     text-align: center;
     line-height: 47px; 
-    /* Button - Reg 19(16) */
     font-family: Noto Sans TC;
     font-size: 19px;
     font-style: normal;
@@ -205,12 +206,11 @@ input[type="password"]{
 .toSignup p{
     color: var(--secondary-color-gray-70, #666);
     text-align: center;
-    /* Body - Med 16(13.3) */
     font-family: Noto Sans TC;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 13.3px; /* 83.125% */
+    line-height: 13.3px; 
 }
 .toSignin{
     width: 100%;
@@ -220,12 +220,11 @@ input[type="password"]{
 .toSignin p{
     color: var(--secondary-color-gray-70, #666);
     text-align: center;
-    /* Body - Med 16(13.3) */
     font-family: Noto Sans TC;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 13.3px; /* 83.125% */
+    line-height: 13.3px; 
 }
 .signup-message{
     width:100%;

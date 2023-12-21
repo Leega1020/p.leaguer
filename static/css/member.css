@@ -12,15 +12,15 @@
 }
 .headboard{
     width: 100%;
-    height: 350px;
+    height: 250px;
     padding-top: 70px;
-    background-color:#f6f6f6;
+    background-color:#dbdada;
 }
 .headContainer{
-    width: 1920px;
+    width: 1820px;
     height: 100%;
     margin: 0 auto;
-    margin-top: 80px;
+    margin-top: 20px;
 }
 .headContainer img{
     width: 100px;
@@ -44,7 +44,6 @@
     width: 100%;
     height: auto;
     background-color: white;
-    margin-top: 30px;
 }
 .memberBoard2{
     width: 1200px;
@@ -54,17 +53,16 @@
     margin-top: 40px;
 }
 .memberBoard {
-    width: 1200px;
-    height: 1200px;
+    width: 900px;
+    height: 650px;
     background-color: #27313b;
     margin: 0 auto;
     overflow: auto; 
-    margin-top: 60px;
 }
 
 .boardTitle{
-    width: calc(100% - 200px);
-    height: 270px;
+    width: calc(100% - 400px);
+    height: 240px;
     background-color: white;
     margin: 80px auto 0 !important;
     border-radius: 10px;
@@ -72,7 +70,7 @@
 }
 .titleBtn{
     width: calc(100% - 800px);
-    height: 100px;
+    height: auto;
     margin: 0 auto;
     margin-top: 30px;
     display: flex;
@@ -89,22 +87,40 @@
     font-weight: 800;
     color: rgb(39, 39, 39);
 }
+.dialogue{
+    width: 200px;
+    margin: 0 auto;
+    margin-top: -80px;
+    margin-bottom: 50px;
+}
+.dialogue p{
+    color:#778595;
+    font-family: Noto Sans TC;
+    font-size: 14px;
+    font-style:normal;
+    font-weight: 400;
+    text-align: center;
+    margin-left: -215px;
+   
+}
+
 
 .b_P{
     width: 100%;
-    height: auto;
+    height: 100px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .b_P P{
     color:#1e1e1e;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 64px;
+    font-size: 40px;
     margin: 0;
-    margin-left: 30px;
+
     font-weight: 900;
     letter-spacing: -2px;
-    margin-top: 20px;
+ 
 }
 .b_P2{
     width: 100%;
@@ -114,13 +130,13 @@
     margin-top: 20px;
 }
 .b_P2 P{
-    background-image: linear-gradient(to right, #ffffef, #868686); /* 起始顏色，結束顏色 */
+    background-image: linear-gradient(to right, #ffffef, #868686); 
     color: transparent;
-    -webkit-background-clip: text; /* 將背景剪裁為文本形狀，適用於WebKit（Chrome、Safari等）瀏覽器 */
+    -webkit-background-clip: text; 
     background-clip: text;
     
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 84px;
+    font-size: 64px;
     margin: 0;
     margin-left: 30px;
     font-weight: 900;
@@ -136,32 +152,31 @@
 }
 .boardTitle .dayul{
     width: 100%;
-    height: 60px;
+    height: auto;
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
+    margin-top: 20px;
 }
 .dayul li{
     width: 100%;
     color:#484848;
     font-family: Arial Narrow;
-    font-size: 28px;
+    font-size: 20px;
     margin: 0;
-    margin-left: 10px;
-    margin-top: -10px;
+    margin-top: -30px;
     font-weight: 900;
 }
 .boardTitle .picul{
     width: 100%;
-    
-    height: 150px;
+    height: 140px;
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
     position: absolute;
-    top:120px;
+    top:100px;
     border: 1px solid transparent;
     border-image: repeating-linear-gradient(to right, transparent, transparent 1px, orange 15px, orange 80px);
     border-image-slice: 1; 
@@ -173,7 +188,7 @@
     padding-top: 30px;
     width: 100%;
     height: auto;
-    
+    margin-top: 15px;
 }
 .picul li{
     border: 1px solid transparent;
@@ -184,27 +199,26 @@
 
 .hhContainer{
     width:500px;
-    height: 800px;
+    height: auto;
     margin: 0 auto;
-    margin-top: 100px;
 }
 .mainHead{
-    width: 500px;
-    height: 550px;
+    width: 300px;
+    height: 350px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     background-image: url('/static/images/badges/bbbbb.png'); 
-    background-size: 600px; 
+    background-size: 300px; 
     background-position:center;
 }
 .headpic{
     height: 290px;
-    margin-top: 40px;
+    margin-top: 45px;
 }
 #headpicimg{
-    width: 250px;
+    width: 200px;
     height: auto;
 }
 .username{
@@ -215,24 +229,22 @@
 .username P{
     margin: 0;
     text-align: center;
-    background-image: linear-gradient(to right, #fffff1, #a8a8a8); /* 起始顏色，結束顏色 */
-    color: transparent;
-    -webkit-background-clip: text; /* 將背景剪裁為文本形狀，適用於WebKit（Chrome、Safari等）瀏覽器 */
+    background-image: linear-gradient(to right, #fffff1, #a8a8a8);
+    -webkit-background-clip: text; 
     background-clip: text;
 }
 .perday{
     flex:1;
 }
 .daypic{
-    width: 400px;
+    width: 200px;
     height: auto;
     display: flex;
     margin: 0 auto;
-    margin-top: 120px;
     gap:10px;
 }
 .daypic img{
-    width: 100px;
+    width: 50px;
     height: auto;
     cursor: pointer;
      
@@ -260,17 +272,17 @@
 
 
 button {
-    width: 1120px; /* Adjust the width as needed */
-    height: 150px; /* Adjust the height as needed */
-    margin: 80px auto 0; /* Auto margin for center alignment */
+    width: 900px; 
+    height: 80px; 
+    margin: 80px auto 0; 
     background-color: #1e1e1e;
     border-radius: 15px;
-    color: white; /* Text color */
-    font-size: 38px; /* Adjust the font size as needed */
-    font-weight: bold; /* Adjust the font weight as needed */
-    border: none; /* Remove border for a cleaner look */
+    color: white; 
+    font-size: 28px; 
+    font-weight: bold;
+    border: none; 
     cursor: pointer;
-    display: block; /* Make the button a block element for auto margin to work */
+    display: block; 
 }
 .ts{
     appearance: none;
@@ -281,7 +293,6 @@ button {
     outline: none;
     cursor: pointer;
     padding: 0;
-    background-color: #bbbbbb;
     margin: 0;
     height: 60px; 
     font-size: 16px; 

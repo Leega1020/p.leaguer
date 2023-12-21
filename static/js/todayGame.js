@@ -1,31 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-
-   
-
-        let userId=localStorage.getItem("userId")
-        
-        let welcomePic=document.querySelector("#welcomePic")
-       
-        let nickname = localStorage.getItem('nickname');
-        let welcomeName=document.querySelector("#welcomeNickname")
-        if(userId===null||userId==="undefined"){
-        welcomePic.src=""
-        let a=document.createElement("a")
-        a.href="/signin"
-        let linkText = document.createTextNode("Sign in");
-        a.appendChild(linkText);
-        welcomeName.appendChild(a)
-        }else{
-            welcomeName.textContent=nickname
-        }
-    let data;  // 提升 data 的声明
-
-   
-    
-
-    
     function updateUI(data) {
         console.log(data);
+        let btpic_m=document.querySelector("#btpic_m")
+        btpic_m.src=data.masterTeamLogo
+        let btpic_g=document.querySelector("#btpic_g")
+        btpic_g.src=data.guestTeamLogo
         let date = document.querySelector("#date");
         date.textContent = data.year + "-" + data.month + "-" + data.day + " " + data.time;
 
@@ -68,9 +47,13 @@ document.addEventListener("DOMContentLoaded", function () {
         let T2name=document.querySelector("#T2name")
         T2name.textContent=data.guestTeam
 
+        let bonpersent_m=document.querySelector("#bonpersent_m")
+        bonpersent_m.textContent=data.gfoulshot/data.mfoul
+        let bonpersent_g=document.querySelector("#bonpersent_g")
+        bonpersent_g.textContent=data.mfoulshot/data.gfoul
 
         let playerContainer = document.querySelector("#pcontainer");
-        playerContainer.innerHTML = "";  // 清空原有内容
+        playerContainer.innerHTML = ""; 
 
         data.today_master_List.forEach(function (player) {
             createPlayerContainer(player, playerContainer);
@@ -78,15 +61,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function createPlayerContainer(player, container) {
-        // Create team container
         let teamContainer = document.createElement("div");
         teamContainer.classList.add("c-team");
 
-        // Create player info container
         let playerInfoContainer = document.createElement("div");
         playerInfoContainer.classList.add("playerInfo");
-
-        // Create backNumber and playerName elements
         let backNumberDiv = document.createElement("div");
         backNumberDiv.classList.add("backNumber");
         backNumberDiv.innerHTML = "<p>" + player[2] + "</p>";
@@ -95,15 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
         playerNameDiv.classList.add("playerName");
         playerNameDiv.innerHTML = "<p>" + player[3] + "</p>";
 
-        // Append backNumber and playerName elements to playerInfo container
         playerInfoContainer.appendChild(backNumberDiv);
         playerInfoContainer.appendChild(playerNameDiv);
 
-        // Create gameInfo container
         let gameInfoContainer = document.createElement("div");
         gameInfoContainer.classList.add("gameInfo");
 
-        // Create minutes, backboard, assist, and Score elements
         let minutesP = document.createElement("div");
         minutesP.classList.add("minutes");
         minutesP.innerHTML = "<p>" + player[4] + "</p>";
@@ -120,17 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
         scoreP.classList.add("Score");
         scoreP.innerHTML = "<p>" + player[7] + "</p>";
 
-        // Append minutes, backboard, assist, and Score elements to gameInfo container
         gameInfoContainer.appendChild(minutesP);
         gameInfoContainer.appendChild(backboardP);
         gameInfoContainer.appendChild(assistP);
         gameInfoContainer.appendChild(scoreP);
 
-        // Append playerInfo and gameInfo containers to teamContainer
         teamContainer.appendChild(playerInfoContainer);
         teamContainer.appendChild(gameInfoContainer);
 
-        // Append teamContainer to container
         container.appendChild(teamContainer);
     }
 
@@ -145,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
     .then(fetchedData => {
-        data = fetchedData;  // 将 data 赋值为 fetchedData
+        data = fetchedData;  
         updateUI(data);
     })  
     .catch(error => {
@@ -155,8 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let T1 = document.querySelector("#T1");
     T1.addEventListener("click", () => {
         let playerContainer = document.querySelector("#pcontainer");
-        playerContainer.innerHTML = "";  // 清空原有内容
-
+        playerContainer.innerHTML = "";  
         data.today_master_List.forEach(function (player) {
             createPlayerContainer(player, playerContainer);
         });
@@ -165,10 +137,43 @@ document.addEventListener("DOMContentLoaded", function () {
     let T2 = document.querySelector("#T2");
     T2.addEventListener("click", () => {
         let playerContainer = document.querySelector("#pcontainer");
-        playerContainer.innerHTML = "";  // 清空原有内容
-
+        playerContainer.innerHTML = ""; 
         data.today_guest_List.forEach(function (player) {
             createPlayerContainer(player, playerContainer);
         });
     });
+
+    let bonContainer=document.querySelector(".bonContainer")
+    let bonbtn=document.querySelector("#bonbonbtn")
+
+    bonbtn.addEventListener("click",()=>{
+        console.log("clicked")
+        bonContainer.style.display="flex"
+        description.style.display="none"
+    })
+    let desbtn=document.querySelector("#desbtn")
+    let description=document.querySelector(".description")
+    desbtn.addEventListener("click",()=>{
+        bonContainer.style.display="none"
+        description.style.display="block"
+    })
+
+    const teamElements = document.querySelectorAll('.teams');
+
+    teamElements.forEach(team => {
+        const teamName = team.querySelector('p');
+    
+        team.addEventListener('mouseleave', () => {
+            teamName.style.color = 'white';
+            team.style.backgroundColor = 'black';
+        });
+    
+        team.addEventListener('mouseover', () => {
+            teamName.style.color = 'black';
+            team.style.backgroundColor = 'white';
+            team.style.borderRadius = '5px 5px 0 0'; 
+        });
+    });
+    
+    
 });

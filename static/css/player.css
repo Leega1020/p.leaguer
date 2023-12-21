@@ -1,7 +1,7 @@
 .text4{
     color:#778595;
     font-family: Noto Sans TC;
-    font-size: 24px;
+    font-size: 14px;
     font-style:normal;
     font-weight: 500;
     text-align: center;
@@ -26,15 +26,15 @@
     font-weight: 700;
 }
 .playerbody{
-    width: 1920px;
+    width: 1200px;
     height: auto;
     display: flex;
     margin: 0 auto;
-    margin-top:80px ;
+    margin-top:40px ;
     flex-wrap: wrap;
 }
 .selection{
-    width: 1200px;
+    width: 900px;
     height: 60px;
     margin: 0 auto;
     display: flex;
@@ -56,14 +56,12 @@
     width: 100%;
     height: 100%;
     border-radius: 30px 0px 0px 30px;
-    border-left: 1px solid #778595;
     box-sizing: border-box;
     flex:2;
 }
 input[type="text"] {
     color:#778595;
     font-family: Noto Sans TC;
-    font-size: 20px;
     font-style:normal;
     font-weight: 400;
    
@@ -78,9 +76,10 @@ input[type="text"] {
 .p1{
     flex: 1.5;
     margin-left: 20px;
+    margin-top: 18px;
 }
 .p1:nth-child(1){
-    flex: 0.8;
+    flex: 0.5;
     margin-left: 20px;
 }
 .p2{
@@ -100,7 +99,6 @@ button{
     border-radius: 30px ;
     border:none;
     background-color:#f6f6f6;
-    padding: 10px 20px;
     cursor: pointers;
     display: flex;
     align-items: center;
@@ -109,7 +107,6 @@ button{
 button P{
     color:#485059;
     font-family: Noto Sans TC;
-    font-size: 20px;
     font-style:normal;
     font-weight: 500;
     text-align: center;
@@ -123,11 +120,10 @@ select {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 0; /* 可以根据需要调整内边距 */
-    /* 添加您的自定义样式 */
+    padding: 0; 
+   
 }
 
-/* 设置背景图片 */
 .select select {
     background: url('/static/images/down.png') no-repeat right center;
     -webkit-appearance: none; 
@@ -137,7 +133,7 @@ select {
     height: auto;
     object-fit: contain;
     cursor: pointer;
-    background-size: 25px 25px;
+    background-size: 20px 20px;
     background-position:80%;
 }
 
@@ -160,19 +156,19 @@ select {
     width: 1200px;
     height: auto;
     margin: 0 auto;
-    margin-top: 80px;
+    margin-top: 40px;
     
 }
 .p_title{
     width: 100%;
-    height: 150px;
+    height: 120px;
     display: flex;
     background-color: #ffffff;
     align-items: center;
 }
 .p_t{
     border-top: 10px solid #28313c;
-    height: 70px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -180,11 +176,12 @@ select {
     border-radius: 10px;
     width: 250px;
     margin-left: 30px;
+    cursor: pointer;
 }
 .p_t1{
     color: rgb(67, 66, 66);
     font-family: Noto Sans TC;
-    font-size: 26px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     text-align:center;
@@ -229,10 +226,10 @@ select {
     flex: 0.8;
 }
 .list_tltle >th:nth-child(4){
-    flex: 1;
+    flex: 1.2;
 }
 .list_tltle >th:nth-child(5){
-    flex: 0.8;
+    flex: 0.6;
 }
 .list_tltle >th:nth-child(6){
     flex: 0.8;
@@ -271,10 +268,10 @@ select {
     flex: 0.8;
 }
 .list_tltle2 >th:nth-child(4){
-    flex: 1;
+    flex: 1.2;
 }
 .list_tltle2 >th:nth-child(5){
-    flex: 0.8;
+    flex: 0.6;
 }
 .list_tltle2 >th:nth-child(6){
     flex: 0.8;

@@ -1,3 +1,489 @@
 .a{
     width: auto;
 }
+.team-score{
+    width: 100%;
+    height: 700px;
+    position: relative;
+}
+.score-bg{
+    width: 100%;
+    height: 100%;   
+}
+.tpanel{
+    width: 600px;
+    height: auto;
+    padding-bottom: 10px;
+}
+.team-score img{
+    width: 100%;
+    height: 100%;   
+}
+.game-info{
+    margin: 0 auto;
+    width: 1200px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top:150px;
+    
+}
+.gameP{
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#date{
+    color: white;
+    font-family: Noto Sans TC;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 900;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+.gg{
+    color: white;
+    font-family: Noto Sans TC;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    margin: 10px 0 0 0;
+}
+.score-board{
+    
+    height: 100%;
+    height: 400px;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 20px;
+}
+
+
+.gpic{
+  
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex:1
+}
+.gpic img{
+    width: 200px;
+    height: 200px;
+}
+.gcontainer{
+    flex:1.5;
+    width: 100%;
+    height: 200px;
+    margin-top: 70px;
+    display: flex;
+}
+.gscore{
+    flex:1;
+   
+    margin: 0 auto;
+    height: auto;
+    display: flex;
+    
+    justify-content: center;
+    flex-direction: column;
+}
+.gmain{
+    width: 100%;
+    text-align: center;
+}
+.g{
+   
+    color: white;
+    font-family: Noto Sans TC;
+    font-size: 86px;
+    font-style: normal;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+    
+}
+.g p{
+    margin: 0;
+    padding: 0;
+}
+.gteam{
+    width: 100%;
+    text-align:end;
+    color: white;
+    font-family: Noto Sans TC;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+}
+.gteam p{
+    margin: 0;
+}
+.gmain{
+    width: 100%;
+    text-align:end;
+    color: white;
+    font-family: Noto Sans TC;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+}
+.gmain p{
+    margin: 0;
+}
+.gteam2{
+    width: 100%;
+    text-align:start;
+    color: white;
+    font-family: Noto Sans TC;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+}
+.gteam2 p{
+    margin: 0;
+}
+.gmain2{
+    width: 100%;
+    text-align:start;
+    color: white;
+    font-family: Noto Sans TC;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+}
+.gmain2 p{
+    margin: 0;
+}
+.g2{
+    
+    color: white;
+    font-family: Noto Sans TC;
+    font-size: 86px;
+    font-style: normal;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    
+}
+.g2 p{
+    margin: 0;
+    padding: 0;
+}
+
+.q1-m{
+    flex: 0.1;
+    color: white;
+    font-family: Noto Sans TC;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+.q1-g{
+    flex: 0.1;
+    color: white;
+    font-family: Noto Sans TC;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+.q{
+    flex: 0.8;
+    color: white;
+    font-family: Noto Sans TC;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+.gul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    margin-right: 60px;
+    margin-left: 60px;
+    flex: 1;
+}
+.gul ul{
+    display: flex;
+    height: 40px;
+}
+.gul hr {
+    margin-top: -30px;
+    width: calc(100% - 80px);
+    margin-right: 20px;
+}
+.compare{
+    width: 600px;
+    height: auto;
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+.c-header{
+    display: flex;
+    width: 100%;
+    height: 45px;
+    border-bottom: 1px solid #989898;
+    border-radius: 10px 10px 0 0;
+   
+    background-color: #0a0a0a;
+}
+.teams{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex:1
+    
+}
+.teams p{
+    color: rgb(255, 255, 255);
+    font-family: Noto Sans TC;
+    font-size: 16px;
+    font-style:normal;
+    font-weight: 400;
+}
+.c-team{
+    display: flex;
+    height: 40px;
+}
+.c-team p{
+    color: rgb(0, 0, 0);
+    font-family: Noto Sans TC;
+    font-size: 16px;
+    font-style:normal;
+    font-weight: 400;
+    margin-left: 30px;
+}
+.playerInfo{
+    flex: 1.5;
+    display: flex;
+    border-bottom: 1px solid #5c5c5c;
+}
+
+.backNumber{
+    flex:0.2;
+    background-color: #f3f3f3;
+    display: flex;
+    justify-content: center;
+   align-items: center;
+}
+.backNumber P{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.backNumber1{
+    display: flex;
+    align-items: center;
+    flex:1;
+}
+.playerName{
+    display: flex;
+    align-items: center;
+    flex:1
+}
+.gameInfo{
+    flex: 2;
+    display: flex;
+
+    border-bottom: 1px solid #5c5c5c;;
+}
+.gameInfo >div{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.scorebbb{
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    background-color: #989898;
+    margin-top: 40px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.scorebbb2{
+    width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border: 1px solid #0a0a0a;
+    margin-top: 40px;
+    
+}
+.scorebbb2 p{
+    font-size: 15px;
+    font-family: Noto Sans TC;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+}
+
+.description{
+    width: 300px;
+    height:auto;
+    padding-bottom: 20px;
+    background-color: #e3e3e3;
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+.description p{
+    color: rgb(125, 125, 125);
+    font-family: Noto Sans TC;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+    
+    margin-left: 10px;
+}
+/* ---------------- < bonbon > ------------------ */
+.bonbon{
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-top: 40px;
+}
+.bonbtn{
+    width: 100px;
+    height: 30px;
+    background-color: #0a0a0a;
+    font-size: 10px;
+    color: white;
+    margin:  0 auto;
+    border-radius:5px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+}
+
+.bonContainer{
+    width: 600px;
+    height: auto;
+    display: flex;
+    margin: 0 auto;
+}
+.bonteam{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex:1
+}
+.bonteam:nth-child(1){
+    border-right: 1px solid #989898;
+}
+.bonteam img{
+    width: 150px;
+}
+.bonteam p{
+    margin: 0;
+    padding: 0;
+    font-family: Noto Sans TC;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+@media screen and (min-width: 800px) and (max-width: 1200px){ 
+    .game-info {
+        width: 100%;
+    }
+    .gul{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      
+        flex: 1;
+    }
+    .gcontainer{
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+  .gpic img{
+    width: 150px;
+    height: 150px;
+}
+#gfinal, #mfinal{
+    font-size: 70px;
+}
+
+}
+@media screen and (max-width:800px){
+    .game-info{
+        width: 100%;
+       
+    }
+    
+    .gpic img{
+        width: 70px;
+        height: 70px;
+    }
+    .gcontainer{
+        flex-direction: column;
+        margin: 0;
+        margin-top: 50px;
+        flex: 1;
+    }
+    .gcontainer .gpic {
+        order: 1;
+    }
+
+    .gcontainer .gscore {
+        order: 2;
+    }
+    .compare{
+        width: 90%;
+    }
+    .gul{
+        margin: 0 20px;
+    }
+    #gfinal, #mfinal{
+        font-size: 50px;
+    }
+    .gameP{
+        width: 90%;
+    }
+    #date{
+        font-size: 40px;
+    }
+    .score-bg{
+        height: 600px;
+    }
+    .team-score {
+        height: 600px;
+    }
+  
+    
+   
+    
+}

@@ -5,37 +5,26 @@ import requests
 from bs4 import BeautifulSoup
 from flask import *
 from decouple import config
-import jwt
 from datetime import datetime, timedelta
 import mysql.connector.pooling
 import requests 
-import boto3
-import pymysql
-import uuid
 
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-app.secret_key="akksso"
-
 SECRET_KEY = config('SECRET_KEY')
+app.secret_key=SECRET_KEY
 APP_ID = config('APP_ID')
 APP_KEY = config('APP_KEY')
 PARTNER_KEY = config('PARTNER_KEY')
-
-AWS_ACCESS_KEY=config('AWS_ACCESS_KEY')
-AWS_SECRET_KEY=config('AWS_SECRET_KEY')
-S3_BUCKET=config('S3_BUCKET')
-RDS_HOST=config('RDS_HOST')
-RDS_USER=config('RDS_USER')
-RDS_PASSWORD=config('RDS_PASSWORD')
-RDS_DB=config('RDS_DB')
-
+DB_HOST=config('DB_HOST')
+DB_PASSWORD=config('DB_PASSWORD')
 dbconfig = {
-    "database": RDS_DB,
-    "user": RDS_USER,
-    "host": RDS_HOST,
-    "password": RDS_PASSWORD,
+    "database": "PLG",
+    "user": "root",
+    "host": DB_HOST,
+    "password": DB_PASSWORD,
+    "port":"3306"
 }
 connection_pool = mysql.connector.pooling.MySQLConnectionPool(pool_name="myPLG",**dbconfig)
 con = connection_pool.get_connection()
@@ -134,8 +123,6 @@ con = connection_pool.get_connection()
 #             #(guest_team[i], master_team[i], years[i], months[i],days[i],weeks[i], times[i], locations[i], gameIds[i], gameNumber[i]))
 #     #con.commit()
 
-
-# ################## 球員數據 ################
 # url = "https://pleagueofficial.com/stat-player"
 # headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"}
 
@@ -149,12 +136,11 @@ con = connection_pool.get_connection()
 
 # player_rows = root.find_all("tr")
 
-# # 遍歷每一個 <tr> 標籤，跳過第一個因為它包含表頭
 # for player_row in player_rows[1:]:
 #     player_info = []  
 #     player_name = player_row.find("th").a.string  
 #     player_info.append(player_name)  
-#     player_stats = player_row.find_all("td")  # 找到球員的詳細數據
+#     player_stats = player_row.find_all("td")  
 #     for stat in player_stats:
 #         player_info.append(stat.string)
 #     player_data.append(player_info) 
@@ -182,12 +168,11 @@ con = connection_pool.get_connection()
 #    # cur.execute("INSERT INTO player (backNumber, playerName, p_team, p_counts, p_time, point2, point3, p_foulShots, p_scores, p_backboards, p_assists, p_intercept, p_miss, p_foul) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
 #               # (backNumber, playerName, p_team, p_counts, p_time, point2, point3, p_foulShots, p_scores, p_backboards, p_assists, p_intercept, p_miss, p_foul))
 
-# #con.commit()
+ #con.commit()
 
-# #cur.close()
-# #con.close()
+ #cur.close()
+ #con.close()
 
-################## 球隊數據＋圖片 ################
 
 # url = "https://pleagueofficial.com/stat-team/2022-23/2#recordn"
 
@@ -216,7 +201,6 @@ con = connection_pool.get_connection()
 #     columns = row.find_all('td')
 #     team_stats = [column.get_text() for column in columns]
 
-#     # 使用循环的索引 i 来访问对应的 logo URL
 #     team_data_with_logo = names + team_stats + [logos[i]]
 
 #     team_datas.append(team_data_with_logo)
@@ -247,7 +231,6 @@ cur.execute("CREATE TABLE userInfo(id INT PRIMARY KEY AUTO_INCREMENT, userId VAR
 # cur.execute("CREATE TABLE memberLike(id INT PRIMARY KEY AUTO_INCREMENT, userId VARCHAR(255), backNumber INT, playerName VARCHAR(255), p_team VARCHAR(255), p_counts INT, p_time VARCHAR(255), point2 VARCHAR(255), point3 VARCHAR(255), p_foulShots VARCHAR(255), p_scores FLOAT, p_backboards FLOAT, p_assists FLOAT, p_intercept FLOAT, p_miss FLOAT, p_foul FLOAT)")
 # con.commit()
 
-################## 近期賽程數據 ################
 # cur=con.cursor()
 # cur.execute("CREATE TABLE today_game (id INT PRIMARY KEY AUTO_INCREMENT,gameId VARCHAR(255),guestQ1 VARCHAR(255),guestQ2 VARCHAR(255),guestQ3 VARCHAR(255),guestQ4 VARCHAR(255),guestFinal VARCHAR(255),masterQ1 VARCHAR(255),masterQ2 VARCHAR(255),masterQ3 VARCHAR(255),masterQ4 VARCHAR(255),masterFinal VARCHAR(255))")
 # cur.execute("CREATE TABLE today_guest_player (id INT PRIMARY KEY AUTO_INCREMENT,gameId VARCHAR(255),backnumber VARCHAR(255),name VARCHAR(255),ontime VARCHAR(255),backboard VARCHAR(255),assist VARCHAR(255),score VARCHAR(255),foul VARCHAR(255),foulshot VARCHAR(255))")

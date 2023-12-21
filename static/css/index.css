@@ -1,4 +1,10 @@
-
+.textIndexTitle{
+    color: rgb(0, 0, 0);
+    font-family: Noto Sans TC;
+    font-size: 18px;
+    font-style:normal;
+    font-weight: 500;
+}
 
 /* ---------------- < game-bar > ------------------ */
 .bar{
@@ -110,7 +116,7 @@
 }
 .headCintainer{
     position: absolute;
-    width: 450px;
+    width: auto;
     height: 100px;
     right: 100px;
     bottom:20px;
@@ -132,6 +138,9 @@
 .w2{
     margin-left: 10px;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex:1
     
 }
@@ -143,16 +152,16 @@
 #c{
     color:#eaeaea;
     position: absolute;
-    top:5px;
-    width: 50px;
-    left: 18px;
+    width: 70px;
     word-wrap: break-word; 
+    text-align: center;
+    top:10px;
+  
 }
 /* ---------------- < main > ------------------ */
 .mainBody{
    padding-top: 40px;
    gap:30px;
-    background-color: antiquewhite;
     width: 1200px;
     height: auto;
     margin: 0 auto;
@@ -166,14 +175,16 @@
     border-radius: 20px;
 }
 .player{
-    flex: 1;
+    
     height: 100%;
-    margin: 0 30px 0 0;
+    
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
+    margin: 0 30px 0 0;
+    flex: 1;
 }
 .lastgame{
-    height: 400px;
+    height: 350px;
     width: auto;
     margin-left: 30px;
     border-radius: 20px;
@@ -186,31 +197,27 @@
 .LG-p1{
     display: flex;
     align-items: center;
-    height: 100px;
+    height: 80px;
     width: 100%;
+    border-bottom: 1px solid #d5d5d5;
 }
 .LG-p1 p{
     margin-left: 20px;
 }
 .LG-p1 img{
-    width: 30px;
-    height: 30px;
-    margin-left: 20px;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-top: 5px;
 }
 .teamboard{
-   
+    height: 100%;
     width: auto;
     margin-left: 30px;
+    margin-top: 30px;
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
     overflow: hidden;
-    height: 370px;
-    margin-top: 30px;
- 
-    margin-left: 30px;
-  
-   
-  margin-bottom: 30px;
 }
 /*hr{
     width: calc(100% - 40px);
@@ -219,11 +226,12 @@
     display: flex;
     align-items: center;
     justify-content: center; 
-    height: 250px;
-   
-    margin: 0 20px;
-    background-color: aqua;
+    height: 230px;
+    width: 95%;
+    margin: 0 auto;
     position: relative;
+    margin-top: 20px;
+  
 }
 
 .hbg img {
@@ -236,8 +244,8 @@
     width: 100%;
     height: 60px;
     background-color: black;
-    z-index: 2000;
-    margin-top: 190px;
+    z-index: 1000;
+    margin-top: 170px;
     opacity: 0.8;
     display: flex;
     align-items: center;
@@ -247,68 +255,75 @@
     z-index: 3000;
     opacity: 1;
 }
-.teams{
-    overflow-x: auto;
-    width:100%;
-    margin: 0 20px;
-    height:auto;
-    display: flex;
-    margin-bottom: 50px;
-}
-.perteam{
-    
-    height: 100%;
-    border-right: 2px solid  rgba(155, 155, 155, 0.1);
- 
+.teams {
+    overflow-x: auto; /* 添加水平滚动条 */
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  flex: 1;
+    margin: 0 20px;
+    height: 100%;
+   margin-top: 20px;
+    margin-bottom: 35px;
+  }
+  
+.perteam {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-right: 2px solid rgba(155, 155, 155, 0.1);
+    margin-top: 20px;
+    flex:1;
 }
+  
+  
 .teamlogo{
     display: flex;
     width: 100px;
     height: 100px;
     align-items: center;
     justify-content: center;
-    margin-top: 15px;
+   
+    margin:  0 auto;
+    margin-top: -20px;
+    flex: 1;
 }
 .teamlogo img{
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
 }
 .teamP{
     
     margin-top: 5px;
+    flex: 0.8;
 }
 .teamP p{
     margin: 0 20px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 .perteam_end{
     
-    height: 100%;
-    background-color:#f6f6f6;
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex: 1;
+   align-items: center;
+    flex:0.8;
 }
 
 .perteam_end a{
     text-decoration: none;
+   margin-left: 20px;
     color: rgb(0, 147, 215);
     font-family: Noto Sans TC;
-    font-size: 18px;
+    font-size: 10px;
     font-style:normal;
     font-weight: 500;
 }
 .perteam_end a:hover {
     text-decoration: underline; 
+    
   }
 
 .player-title{
     padding: 10px;
-    height: 50px;
+    height: 45px;
     margin: 0 auto;
     background-color:#27313c ;
     display: flex;
@@ -317,7 +332,7 @@
 }
 .player-title li{
     line-height: 3;
-    flex:0.5
+    flex:0.4
     
 }
 .player-title li:nth-child(2){
@@ -327,10 +342,12 @@
     flex:0.01
 }
 .player-title li:nth-child(1){
-    width: 100px;
-    flex:0.2
-    
   
+    flex:0.2
+}
+.player-title li:nth-child(5){
+   
+    flex:0.7
 }
 .player hr{
     opacity: 0.3;
@@ -362,19 +379,53 @@
     font-weight: 500;
 }
 
-/* 在您的CSS样式文件中定义一个类来更改表头单元格颜色 */
-
-
 /* ---------------- < footer > ------------------ */
 footer {
     bottom: 0;
     width: 100%;
-    height:300px; /* 或者使用其他你想要的高度 */
+    height:300px;
     background-color: black;
     margin-top: 120px;
 }
 
-@media screen and (min-width: 830px) and (max-width: 1200px){ 
+@media screen and (min-width: 831px) and (max-width: 1200px){ 
     .mainBody {
         width: 100%;
-    }}
+    }
+    .titleContainer{
+        flex:1.2;
+    }
+    .headCintainer{
+        right: 30px;
+    }
+
+}
+@media screen and (max-width:830px){
+    .mainBody {
+        width: 90%;
+        flex-wrap: wrap;
+    }
+    .lastgame{
+        margin-left: 0;
+    }
+    .teamboard{
+        margin-left: 0;
+    }
+    .player{
+        flex:none;
+        width: 100%;
+         margin-right: 0;
+    }
+    .headCintainer{
+        right: -80px;
+    }
+    .sign {
+        width: 10px;
+    }
+    .navbar {
+       overflow: hidden;
+    }
+    .headCintainer{
+        right: 5px;
+    }
+}
