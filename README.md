@@ -18,7 +18,7 @@
 
 ## System Architecture 
 
-![](Architecture diagram/System architecture.png)
+!.[.].(Architecture diagram/System architecture.png)
 
 ## ERD 
 
