@@ -18,7 +18,7 @@
 
 ## System Architecture 
 
-!.[.].(Architecture diagram/System architecture.png)
+![](https://github.com/Leega1020/p.leaguer/blob/main/Architecture diagram/System architecture.png)
 
 ## ERD 
 
