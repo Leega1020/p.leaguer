@@ -22,7 +22,7 @@
 
 ## ERD 
 
-![](Architecture diagram/ERD.png)
+![](https://github.com/Leega1020/p.leaguer/blob/main/Architecture_diagram/ERD.png)
 
 ## 程式結構
 
