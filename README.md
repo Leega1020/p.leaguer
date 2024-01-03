@@ -16,13 +16,13 @@
 - 定時任務完成資料更新
 - 提供 API 供前端呼叫取得資料
 
-## Cloud Architecture Diagram
+## System Architecture 
 
-[Insert Cloud Architecture Diagram]
+![](Architecture diagram/System architecture.png)
 
-## ERD Diagram
+## ERD 
 
-[Insert Entity-Relationship Diagram]
+![](Architecture diagram/ERD.png)
 
 ## 程式結構
 
